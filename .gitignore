@@ -1,0 +1,12 @@
+#OS junk files
+[Tt]humbs.db
+
+#Visual Studio files
+*.user
+*.vspscc
+*.vssscc
+*.suo
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
