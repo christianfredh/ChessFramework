@@ -1,7 +1,7 @@
-#OS junk files
+# OS junk files
 [Tt]humbs.db
 
-#Visual Studio files
+# Visual Studio files
 *.user
 *.vspscc
 *.vssscc
@@ -10,3 +10,7 @@ obj/
 [Bb]in
 [Dd]ebug*/
 [Rr]elease*/
+
+# NuGet Packages
+ChessFramework/packages/*
+!ChessFramework/packages/repositories.config
