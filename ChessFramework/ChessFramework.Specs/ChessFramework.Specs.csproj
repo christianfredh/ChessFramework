@@ -47,12 +47,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\ChessScenario.cs" />
     <Compile Include="Features\GameStart.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GameStart.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\NewBoard.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewBoard.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepDefinitions\BoardHelpers.cs" />
+    <Compile Include="StepDefinitions\BoardSteps.cs" />
     <Compile Include="StepDefinitions\GameSteps.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +68,10 @@
     <None Include="Features\GameStart.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GameStart.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\NewBoard.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>NewBoard.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
