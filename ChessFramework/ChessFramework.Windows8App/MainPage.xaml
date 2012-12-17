@@ -57,11 +57,13 @@
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="80" />
             </Grid.ColumnDefinitions>
-            <Rectangle x:Name="A8" Stroke="Black" Grid.Column="0" Grid.Row="0">
-                <Rectangle.Fill>
-                    <SolidColorBrush Color="White"/>
-                </Rectangle.Fill>
-            </Rectangle>
+            <Grid x:Name="A8" Grid.Column="0" Grid.Row="0">
+                <Rectangle Stroke="Black">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
             <Rectangle x:Name="B8" Stroke="Black" Grid.Column="1" Grid.Row="0">
                 <Rectangle.Fill>
                     <SolidColorBrush Color="Black"/>

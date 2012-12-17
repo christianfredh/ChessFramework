@@ -4,8 +4,8 @@ namespace ChessFramework
 {
     public class Game
     {
-        private bool hasStarted;
-        private bool hasEnded;
+        private bool _hasStarted;
+        private bool _hasEnded;
 
         public event EventHandler NewTurn;
         public event EventHandler GameEnded;
@@ -20,36 +20,36 @@ namespace ChessFramework
 
         public void Start()
         {
-            if (hasStarted)
+            if (_hasStarted)
             {
                 throw new InvalidOperationException("Game has already started.");
             }
 
             CurrentTurn = Army.White;
-            hasStarted = true;
+            _hasStarted = true;
             OnNewTurn();
         }
 
         public void Resign()
         {
-            if (hasEnded)
+            if (_hasEnded)
             {
                 throw new InvalidOperationException("Game has already ended.");
             }
 
             CurrentTurn = null;
-            hasEnded = true;
+            _hasEnded = true;
             OnGameEnded();
         }
 
         public void Move(Position from, Position to)
         {
-            if (hasStarted == false)
+            if (_hasStarted == false)
             {
                 throw new InvalidOperationException("Game hasn't been started.");
             }
 
-            if (hasEnded)
+            if (_hasEnded)
             {
                 throw new InvalidOperationException("Game has been ended.");
             }

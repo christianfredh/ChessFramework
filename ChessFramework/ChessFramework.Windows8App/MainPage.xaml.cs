@@ -5,12 +5,14 @@ using System.Linq;
 using ChessFramework.Windows8App.Common;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -52,6 +54,16 @@ namespace ChessFramework.Windows8App
 
         private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
         {
+            A8.Children.Add(new Rook(Army.Black));
+        }
+    }
+
+    public class Rook : Grid
+    {
+        public Rook(Army army)
+        {
+            var uri = new Uri("ms-appx:/Assets/" + army + "Rook.png", UriKind.Absolute);
+            Children.Add(new Image { Source = new BitmapImage(uri) });
         }
     }
 }

@@ -123,7 +123,7 @@ namespace ChessFramework
             }
         }
 
-        private Tuple<int, int> ToIndecies(Position position)
+        private static IntPair ToIndecies(Position position)
         {
             int horizontalIndex;
             switch (position.HorizontalPosition)
@@ -165,8 +165,21 @@ namespace ChessFramework
 
             var verticalIndex = Convert.ToInt32(position.VerticalPosition) - 1;
 
-            var indices = new Tuple<int, int>(horizontalIndex, verticalIndex);
+            var indices = new IntPair(horizontalIndex, verticalIndex);
             return indices;
+        }
+
+
+        private class IntPair
+        {
+            public IntPair(int item1, int item2)
+            {
+                Item1 = item1;
+                Item2 = item2;
+            }
+
+            public int Item1 { get; private set; }
+            public int Item2 { get; private set; }
         }
     }
 }

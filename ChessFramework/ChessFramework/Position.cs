@@ -7,8 +7,8 @@
 
         public override string ToString()
         {
-            if (string.IsNullOrWhiteSpace(HorizontalPosition) || 
-                string.IsNullOrWhiteSpace(VerticalPosition))
+            if (string.IsNullOrEmpty(HorizontalPosition) || 
+                string.IsNullOrEmpty(VerticalPosition))
             {
                 return string.Empty;
             }
