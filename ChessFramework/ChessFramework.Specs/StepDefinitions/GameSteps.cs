@@ -15,6 +15,7 @@ namespace ChessFramework.Specs.StepDefinitions
             ChessScenario.Game = new Game();
         }
 
+        [Given(@"the game has just started")]
         [When(@"the game starts")]
         public void WhenTheGameStarts()
         {
