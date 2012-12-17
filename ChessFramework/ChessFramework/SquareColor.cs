@@ -1,8 +1,7 @@
 ﻿namespace ChessFramework
 {
-    public enum Army
+    public enum SquareColor
     {
-        Nobody,
         White,
         Black
     }

@@ -4,23 +4,40 @@ namespace ChessFramework
 {
     public class Game
     {
-        private Board _board = new Board();
-
         public event EventHandler NewTurn;
+        public Army CurrentTurn { get; private set; }
+        public Board Board { get; private set; }
+
+        public Game()
+        {
+            Board = new Board();
+            CurrentTurn = Army.Nobody;
+        }
 
         public void Start()
         {
-            NewTurn(this, EventArgs.Empty);
+            CurrentTurn = Army.White;
+            OnNewTurn();
+        }
+
+        private void OnNewTurn()
+        {
+            if (NewTurn != null)
+            {
+                NewTurn(this, EventArgs.Empty);
+            }
         }
 
         public void Resign()
         {
-            
+            //...
+            CurrentTurn = Army.Nobody;
         }
 
         public void Move(Square from, Square to)
         {
-            NewTurn(this, EventArgs.Empty);
+            //...
+            OnNewTurn();
         }
     }
 }
