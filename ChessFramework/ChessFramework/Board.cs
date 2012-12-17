@@ -100,9 +100,17 @@ namespace ChessFramework
 
         private void InitializePosition(string horizontalPosition, string verticalPosition, SquareColor squareColor, Piece piece)
         {
-            var square = this[new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition }];
+            var position = new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition };
+            var square = this[position];
+            square.Position = position;
             square.Color = squareColor;
             square.Piece = piece;
+            square.Board = this;
+
+            if (piece != null)
+            {
+                piece.CurrentSquare = square;
+            }
         }
 
         private Tuple<int, int> ToIndecies(Position position)

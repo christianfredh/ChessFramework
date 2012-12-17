@@ -21,7 +21,7 @@ namespace ChessFramework.Specs.StepDefinitions
                 for (var hotizontalIndex = 0; hotizontalIndex < 8; hotizontalIndex++)
                 {
 
-                    var position = BoardHelpers.IndexToPosition(verticalIndex, hotizontalIndex);
+                    var position = BoardHelper.IndexToPosition(verticalIndex, hotizontalIndex);
                     var square = ChessScenario.Board[position];
 
                     var value = table.Rows[verticalIndex][hotizontalIndex];
@@ -49,7 +49,7 @@ namespace ChessFramework.Specs.StepDefinitions
             {
                 for (var hotizontalIndex = 0; hotizontalIndex < 8; hotizontalIndex++)
                 {
-                    var position = BoardHelpers.IndexToPosition(verticalIndex, hotizontalIndex);
+                    var position = BoardHelper.IndexToPosition(verticalIndex, hotizontalIndex);
                     var square = ChessScenario.Board[position];
 
                     var value = table.Rows[verticalIndex][hotizontalIndex];

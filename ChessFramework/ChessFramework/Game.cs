@@ -5,6 +5,7 @@ namespace ChessFramework
     public class Game
     {
         public event EventHandler NewTurn;
+        public event EventHandler GameEnded;
         public Army CurrentTurn { get; private set; }
         public Board Board { get; private set; }
 
@@ -20,6 +21,32 @@ namespace ChessFramework
             OnNewTurn();
         }
 
+        public void Resign()
+        {
+            CurrentTurn = Army.Nobody;
+            OnGameEnded();
+        }
+
+        public void Move(Position from, Position to)
+        {
+            var piece = Board[from].Piece;
+            if (piece == null)
+            {
+                throw new InvalidMoveException(from, to, "No piece to move at the location.");
+            }
+
+            piece.Move(to);
+
+            if (HasEnded())
+            {
+                OnGameEnded();
+            }
+            else
+            {
+                OnNewTurn();
+            }
+        }
+
         private void OnNewTurn()
         {
             if (NewTurn != null)
@@ -28,16 +55,18 @@ namespace ChessFramework
             }
         }
 
-        public void Resign()
+        private void OnGameEnded()
         {
-            //...
-            CurrentTurn = Army.Nobody;
+            if (GameEnded != null)
+            {
+                GameEnded(this, EventArgs.Empty);
+            }
         }
 
-        public void Move(Square from, Square to)
+        private bool HasEnded()
         {
-            //...
-            OnNewTurn();
+            // ...
+            return false;
         }
     }
 }
