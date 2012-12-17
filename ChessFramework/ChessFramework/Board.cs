@@ -98,6 +98,16 @@ namespace ChessFramework
             }
         }
 
+        public bool IsOccupied(Position position)
+        {
+            return this[position].IsOccupied();
+        }
+
+        public bool IsFree(Position position)
+        {
+            return this[position].IsFree();
+        }
+
         private void InitializePosition(string horizontalPosition, string verticalPosition, SquareColor squareColor, Piece piece)
         {
             var position = new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition };

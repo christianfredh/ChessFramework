@@ -6,13 +6,13 @@ namespace ChessFramework
     {
         public event EventHandler NewTurn;
         public event EventHandler GameEnded;
-        public Army CurrentTurn { get; private set; }
+        public Army? CurrentTurn { get; private set; }
         public Board Board { get; private set; }
 
         public Game()
         {
             Board = new Board();
-            CurrentTurn = Army.Nobody;
+            CurrentTurn = null;
         }
 
         public void Start()
@@ -23,7 +23,7 @@ namespace ChessFramework
 
         public void Resign()
         {
-            CurrentTurn = Army.Nobody;
+            CurrentTurn = null;
             OnGameEnded();
         }
 

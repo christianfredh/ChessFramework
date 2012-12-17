@@ -2,7 +2,6 @@
 {
     public enum Army
     {
-        Nobody,
         White,
         Black
     }
