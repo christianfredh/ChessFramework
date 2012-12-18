@@ -4,10 +4,28 @@ namespace ChessFramework
 {
     public struct Position
     {
-        public string HorizontalPosition { get; set; }
-        public string VerticalPosition { get; set; }
+        public char HorizontalPosition { get; set; }
+        public char VerticalPosition { get; set; }
 
-        public Position(string positionText) : this()
+        public Position(char horizontalPosition, char verticalPosition)
+            : this()
+        {
+            if (IsValidHorizontalPosition(horizontalPosition) == false)
+            {
+                throw new ArgumentOutOfRangeException("horizontalPosition", string.Format("'{0}' is not a valid horizontal position.", horizontalPosition));
+            }
+
+            if (IsValidVerticalPosition(verticalPosition) == false)
+            {
+                throw new ArgumentOutOfRangeException("verticalPosition", string.Format("'{0}' is not a valid vertical position.", verticalPosition));
+            }
+
+            HorizontalPosition = horizontalPosition;
+            VerticalPosition = verticalPosition;
+        }
+
+        public Position(string positionText)
+            : this()
         {
             if (positionText == null)
             {
@@ -19,21 +37,42 @@ namespace ChessFramework
                 throw new ArgumentException("Position text must be two characters, first a-h followed by 1-8.");
             }
 
-            //...
+            var horizontalPosition = positionText[0];
+            var verticalPosition = positionText[1];
 
-            HorizontalPosition = positionText[0].ToString();
-            VerticalPosition = positionText[1].ToString();
+            if (IsValidHorizontalPosition(horizontalPosition) == false)
+            {
+                throw new ArgumentOutOfRangeException("positionText", string.Format("'{0}' is not a valid horizontal position.", horizontalPosition));
+            }
+
+            if (IsValidVerticalPosition(verticalPosition) == false)
+            {
+                throw new ArgumentOutOfRangeException("positionText", string.Format("'{0}' is not a valid vertical position.", verticalPosition));
+            }
+
+            HorizontalPosition = horizontalPosition;
+            VerticalPosition = verticalPosition;
         }
 
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(HorizontalPosition) || 
-                string.IsNullOrEmpty(VerticalPosition))
+            if (IsValidHorizontalPosition(HorizontalPosition) == false ||
+                IsValidVerticalPosition(VerticalPosition) == false)
             {
                 return string.Empty;
             }
 
             return string.Concat(HorizontalPosition, VerticalPosition);
+        }
+
+        private static bool IsValidHorizontalPosition(char horizontalPosition)
+        {
+            return horizontalPosition >= 'a' && horizontalPosition <= 'h';
+        }
+
+        private static bool IsValidVerticalPosition(char verticalPosition)
+        {
+            return verticalPosition >= '1' && verticalPosition <= '8';
         }
     }
 }

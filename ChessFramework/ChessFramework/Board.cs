@@ -16,77 +16,77 @@ namespace ChessFramework
                 }
             }
 
-            InitializePosition("a", "1", SquareColor.Black, new Rook { Color = Army.White });
-            InitializePosition("b", "1", SquareColor.White, new Knight { Color = Army.White });
-            InitializePosition("c", "1", SquareColor.Black, new Bishop { Color = Army.White });
-            InitializePosition("d", "1", SquareColor.White, new Queen { Color = Army.White });
-            InitializePosition("e", "1", SquareColor.Black, new King { Color = Army.White });
-            InitializePosition("f", "1", SquareColor.White, new Bishop { Color = Army.White });
-            InitializePosition("g", "1", SquareColor.Black, new Knight { Color = Army.White });
-            InitializePosition("h", "1", SquareColor.White, new Rook { Color = Army.White });
+            InitializePosition("a1", SquareColor.Black, new Rook { Color = Army.White });
+            InitializePosition("b1", SquareColor.White, new Knight { Color = Army.White });
+            InitializePosition("c1", SquareColor.Black, new Bishop { Color = Army.White });
+            InitializePosition("d1", SquareColor.White, new Queen { Color = Army.White });
+            InitializePosition("e1", SquareColor.Black, new King { Color = Army.White });
+            InitializePosition("f1", SquareColor.White, new Bishop { Color = Army.White });
+            InitializePosition("g1", SquareColor.Black, new Knight { Color = Army.White });
+            InitializePosition("h1", SquareColor.White, new Rook { Color = Army.White });
 
-            InitializePosition("a", "2", SquareColor.White, new Pawn { Color = Army.White });
-            InitializePosition("b", "2", SquareColor.Black, new Pawn { Color = Army.White });
-            InitializePosition("c", "2", SquareColor.White, new Pawn { Color = Army.White });
-            InitializePosition("d", "2", SquareColor.Black, new Pawn { Color = Army.White });
-            InitializePosition("e", "2", SquareColor.White, new Pawn { Color = Army.White });
-            InitializePosition("f", "2", SquareColor.Black, new Pawn { Color = Army.White });
-            InitializePosition("g", "2", SquareColor.White, new Pawn { Color = Army.White });
-            InitializePosition("h", "2", SquareColor.Black, new Pawn { Color = Army.White });
+            InitializePosition("a2", SquareColor.White, new Pawn { Color = Army.White });
+            InitializePosition("b2", SquareColor.Black, new Pawn { Color = Army.White });
+            InitializePosition("c2", SquareColor.White, new Pawn { Color = Army.White });
+            InitializePosition("d2", SquareColor.Black, new Pawn { Color = Army.White });
+            InitializePosition("e2", SquareColor.White, new Pawn { Color = Army.White });
+            InitializePosition("f2", SquareColor.Black, new Pawn { Color = Army.White });
+            InitializePosition("g2", SquareColor.White, new Pawn { Color = Army.White });
+            InitializePosition("h2", SquareColor.Black, new Pawn { Color = Army.White });
 
-            InitializePosition("a", "3", SquareColor.Black, null);
-            InitializePosition("b", "3", SquareColor.White, null);
-            InitializePosition("c", "3", SquareColor.Black, null);
-            InitializePosition("d", "3", SquareColor.White, null);
-            InitializePosition("e", "3", SquareColor.Black, null);
-            InitializePosition("f", "3", SquareColor.White, null);
-            InitializePosition("g", "3", SquareColor.Black, null);
-            InitializePosition("h", "3", SquareColor.White, null);
+            InitializePosition("a3", SquareColor.Black, null);
+            InitializePosition("b3", SquareColor.White, null);
+            InitializePosition("c3", SquareColor.Black, null);
+            InitializePosition("d3", SquareColor.White, null);
+            InitializePosition("e3", SquareColor.Black, null);
+            InitializePosition("f3", SquareColor.White, null);
+            InitializePosition("g3", SquareColor.Black, null);
+            InitializePosition("h3", SquareColor.White, null);
 
-            InitializePosition("a", "4", SquareColor.White, null);
-            InitializePosition("b", "4", SquareColor.Black, null);
-            InitializePosition("c", "4", SquareColor.White, null);
-            InitializePosition("d", "4", SquareColor.Black, null);
-            InitializePosition("e", "4", SquareColor.White, null);
-            InitializePosition("f", "4", SquareColor.Black, null);
-            InitializePosition("g", "4", SquareColor.White, null);
-            InitializePosition("h", "4", SquareColor.Black, null);
+            InitializePosition("a4", SquareColor.White, null);
+            InitializePosition("b4", SquareColor.Black, null);
+            InitializePosition("c4", SquareColor.White, null);
+            InitializePosition("d4", SquareColor.Black, null);
+            InitializePosition("e4", SquareColor.White, null);
+            InitializePosition("f4", SquareColor.Black, null);
+            InitializePosition("g4", SquareColor.White, null);
+            InitializePosition("h4", SquareColor.Black, null);
 
-            InitializePosition("a", "5", SquareColor.Black, null);
-            InitializePosition("b", "5", SquareColor.White, null);
-            InitializePosition("c", "5", SquareColor.Black, null);
-            InitializePosition("d", "5", SquareColor.White, null);
-            InitializePosition("e", "5", SquareColor.Black, null);
-            InitializePosition("f", "5", SquareColor.White, null);
-            InitializePosition("g", "5", SquareColor.Black, null);
-            InitializePosition("h", "5", SquareColor.White, null);
+            InitializePosition("a5", SquareColor.Black, null);
+            InitializePosition("b5", SquareColor.White, null);
+            InitializePosition("c5", SquareColor.Black, null);
+            InitializePosition("d5", SquareColor.White, null);
+            InitializePosition("e5", SquareColor.Black, null);
+            InitializePosition("f5", SquareColor.White, null);
+            InitializePosition("g5", SquareColor.Black, null);
+            InitializePosition("h5", SquareColor.White, null);
 
-            InitializePosition("a", "6", SquareColor.White, null);
-            InitializePosition("b", "6", SquareColor.Black, null);
-            InitializePosition("c", "6", SquareColor.White, null);
-            InitializePosition("d", "6", SquareColor.Black, null);
-            InitializePosition("e", "6", SquareColor.White, null);
-            InitializePosition("f", "6", SquareColor.Black, null);
-            InitializePosition("g", "6", SquareColor.White, null);
-            InitializePosition("h", "6", SquareColor.Black, null);
+            InitializePosition("a6", SquareColor.White, null);
+            InitializePosition("b6", SquareColor.Black, null);
+            InitializePosition("c6", SquareColor.White, null);
+            InitializePosition("d6", SquareColor.Black, null);
+            InitializePosition("e6", SquareColor.White, null);
+            InitializePosition("f6", SquareColor.Black, null);
+            InitializePosition("g6", SquareColor.White, null);
+            InitializePosition("h6", SquareColor.Black, null);
 
-            InitializePosition("a", "7", SquareColor.Black, new Pawn { Color = Army.Black });
-            InitializePosition("b", "7", SquareColor.White, new Pawn { Color = Army.Black });
-            InitializePosition("c", "7", SquareColor.Black, new Pawn { Color = Army.Black });
-            InitializePosition("d", "7", SquareColor.White, new Pawn { Color = Army.Black });
-            InitializePosition("e", "7", SquareColor.Black, new Pawn { Color = Army.Black });
-            InitializePosition("f", "7", SquareColor.White, new Pawn { Color = Army.Black });
-            InitializePosition("g", "7", SquareColor.Black, new Pawn { Color = Army.Black });
-            InitializePosition("h", "7", SquareColor.White, new Pawn { Color = Army.Black });
+            InitializePosition("a7", SquareColor.Black, new Pawn { Color = Army.Black });
+            InitializePosition("b7", SquareColor.White, new Pawn { Color = Army.Black });
+            InitializePosition("c7", SquareColor.Black, new Pawn { Color = Army.Black });
+            InitializePosition("d7", SquareColor.White, new Pawn { Color = Army.Black });
+            InitializePosition("e7", SquareColor.Black, new Pawn { Color = Army.Black });
+            InitializePosition("f7", SquareColor.White, new Pawn { Color = Army.Black });
+            InitializePosition("g7", SquareColor.Black, new Pawn { Color = Army.Black });
+            InitializePosition("h7", SquareColor.White, new Pawn { Color = Army.Black });
 
-            InitializePosition("a", "8", SquareColor.White, new Rook { Color = Army.Black });
-            InitializePosition("b", "8", SquareColor.Black, new Knight { Color = Army.Black });
-            InitializePosition("c", "8", SquareColor.White, new Bishop { Color = Army.Black });
-            InitializePosition("d", "8", SquareColor.Black, new Queen { Color = Army.Black });
-            InitializePosition("e", "8", SquareColor.White, new King { Color = Army.Black });
-            InitializePosition("f", "8", SquareColor.Black, new Bishop { Color = Army.Black });
-            InitializePosition("g", "8", SquareColor.White, new Knight { Color = Army.Black });
-            InitializePosition("h", "8", SquareColor.Black, new Rook { Color = Army.Black });
+            InitializePosition("a8", SquareColor.White, new Rook { Color = Army.Black });
+            InitializePosition("b8", SquareColor.Black, new Knight { Color = Army.Black });
+            InitializePosition("c8", SquareColor.White, new Bishop { Color = Army.Black });
+            InitializePosition("d8", SquareColor.Black, new Queen { Color = Army.Black });
+            InitializePosition("e8", SquareColor.White, new King { Color = Army.Black });
+            InitializePosition("f8", SquareColor.Black, new Bishop { Color = Army.Black });
+            InitializePosition("g8", SquareColor.White, new Knight { Color = Army.Black });
+            InitializePosition("h8", SquareColor.Black, new Rook { Color = Army.Black });
         }
 
         public Square this[Position position]
@@ -108,9 +108,9 @@ namespace ChessFramework
             return this[position].IsFree();
         }
 
-        private void InitializePosition(string horizontalPosition, string verticalPosition, SquareColor squareColor, Piece piece)
+        private void InitializePosition(string positionText, SquareColor squareColor, Piece piece)
         {
-            var position = new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition };
+            var position = new Position(positionText);
             var square = this[position];
             square.Position = position;
             square.Color = squareColor;
@@ -128,42 +128,42 @@ namespace ChessFramework
             int horizontalIndex;
             switch (position.HorizontalPosition)
             {
-                case "a":
+                case 'a':
                     horizontalIndex = 0;
                     break;
 
-                case "b":
+                case 'b':
                     horizontalIndex = 1;
                     break;
 
-                case "c":
+                case 'c':
                     horizontalIndex = 2;
                     break;
 
-                case "d":
+                case 'd':
                     horizontalIndex = 3;
                     break;
 
-                case "e":
+                case 'e':
                     horizontalIndex = 4;
                     break;
 
-                case "f":
+                case 'f':
                     horizontalIndex = 5;
                     break;
 
-                case "g":
+                case 'g':
                     horizontalIndex = 6;
                     break;
 
-                case "h":
+                case 'h':
                     horizontalIndex = 7;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("position", "Invaid positionText.");
             }
 
-            var verticalIndex = Convert.ToInt32(position.VerticalPosition) - 1;
+            var verticalIndex = Convert.ToInt32(position.VerticalPosition.ToString()) - 1;
 
             var indices = new IntPair(horizontalIndex, verticalIndex);
             return indices;

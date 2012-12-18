@@ -47,9 +47,9 @@ namespace ChessFramework
             switch (Color)
             {
                 case Army.White:
-                    return CurrentSquare.Position.VerticalPosition == "2";
+                    return CurrentSquare.Position.VerticalPosition == '2';
                 case Army.Black:
-                    return CurrentSquare.Position.VerticalPosition == "7";
+                    return CurrentSquare.Position.VerticalPosition == '7';
                 default:
                     return false;
             }
@@ -57,12 +57,12 @@ namespace ChessFramework
 
         private bool CanMoveOneForward()
         {
-            if (Color == Army.White && CurrentSquare.Position.VerticalPosition == "8")
+            if (Color == Army.White && CurrentSquare.Position.VerticalPosition == '8')
             {
                 return false;
             }
 
-            if (Color == Army.Black && CurrentSquare.Position.VerticalPosition == "1")
+            if (Color == Army.Black && CurrentSquare.Position.VerticalPosition == '1')
             {
                 return false;
             }
@@ -92,7 +92,7 @@ namespace ChessFramework
         private static Position GetPositionBelow(Position position)
         {
             var horizontalPosition = position.HorizontalPosition;
-            var verticalPosition = (Convert.ToInt32(position.VerticalPosition) - 1).ToString(CultureInfo.InvariantCulture);
+            var verticalPosition = (Convert.ToInt32(position.VerticalPosition.ToString()) - 1).ToString(CultureInfo.InvariantCulture)[0];
 
             return new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition };
         }
@@ -100,7 +100,7 @@ namespace ChessFramework
         private static Position GetPositionAbove(Position position)
         {
             var horizontalPosition = position.HorizontalPosition;
-            var verticalPosition = (Convert.ToInt32(position.VerticalPosition) + 1).ToString(CultureInfo.InvariantCulture);
+            var verticalPosition = (Convert.ToInt32(position.VerticalPosition.ToString()) + 1).ToString(CultureInfo.InvariantCulture)[0];
 
             return new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition };
         }
