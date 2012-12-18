@@ -160,7 +160,7 @@ namespace ChessFramework
                     horizontalIndex = 7;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("position", "Invaid position.");
+                    throw new ArgumentOutOfRangeException("position", "Invaid positionText.");
             }
 
             var verticalIndex = Convert.ToInt32(position.VerticalPosition) - 1;

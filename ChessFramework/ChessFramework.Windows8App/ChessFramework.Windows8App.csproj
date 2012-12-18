@@ -128,6 +128,11 @@
     <None Include="ChessFramework.Windows8App_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\BlackBishop.png" />
+    <Content Include="Assets\BlackKing.png" />
+    <Content Include="Assets\BlackKnight.png" />
+    <Content Include="Assets\BlackPawn.png" />
+    <Content Include="Assets\BlackQueen.png" />
     <Content Include="Assets\BlackRook.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
