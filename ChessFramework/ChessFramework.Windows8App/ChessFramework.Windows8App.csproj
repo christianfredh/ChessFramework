@@ -138,6 +138,12 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\WhiteBishop.png" />
+    <Content Include="Assets\WhiteKing.png" />
+    <Content Include="Assets\WhiteKnight.png" />
+    <Content Include="Assets\WhitePawn.png" />
+    <Content Include="Assets\WhiteQueen.png" />
+    <Content Include="Assets\WhiteRook.png" />
     <Content Include="Common\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
