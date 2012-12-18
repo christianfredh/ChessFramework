@@ -60,6 +60,11 @@ namespace ChessFramework
                 throw new InvalidMoveException(from, to, "No piece to move at the location.");
             }
 
+            if (piece.Color != CurrentTurn)
+            {
+                throw new InvalidMoveException(from, to, string.Format("It is not {0}'s turn to move.", piece.Color));
+            }
+
             piece.Move(to);
 
             if (HasEnded())

@@ -59,6 +59,15 @@ namespace ChessFramework.Windows8App
             _game.Start();
             InitSquaresDictionary();
             RenderBoard(_game.Board);
+
+            _game.Move(new Position("e2"), new Position("e3"));
+            RenderBoard(_game.Board);
+
+            _game.Move(new Position("e7"), new Position("e6"));
+            RenderBoard(_game.Board);
+
+            _game.Move(new Position("e3"), new Position("e4"));
+            RenderBoard(_game.Board);
         }
 
         private void InitSquaresDictionary()
