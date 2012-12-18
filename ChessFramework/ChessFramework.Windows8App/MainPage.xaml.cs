@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -151,24 +150,10 @@ namespace ChessFramework.Windows8App
 
                 if (square.IsOccupied())
                 {
-                    var pieceElement = GetUIElementForPiece(square.Piece);
+                    var pieceElement = new PieceElement(square.Piece);
                     _squares[positionKey].Children.Add(pieceElement);
                 }
             }
-        }
-
-        private static UIElement GetUIElementForPiece(Piece piece)
-        {
-            return new PieceElement(piece.Color, piece.GetType());
-        }
-    }
-
-    public class PieceElement : Grid
-    {
-        public PieceElement(Army army, Type pieceType)
-        {
-            var uri = new Uri("ms-appx:/Assets/" + army + pieceType.Name + ".png", UriKind.Absolute);
-            Children.Add(new Image { Source = new BitmapImage(uri) });
         }
     }
 }
