@@ -7,53 +7,47 @@ namespace ChessFramework.Specs.StepDefinitions
     {
         public static Position IndexToPosition(int verticalIndex, int hotizontalIndex)
         {
-            var verticalPosition = (8 - verticalIndex).ToString(CultureInfo.InvariantCulture);
-            var horizontalPosition = string.Empty;
+            var verticalPosition = (8 - verticalIndex).ToString(CultureInfo.InvariantCulture)[0];
+            char horizontalPosition;
             switch (hotizontalIndex)
             {
                 case 0:
-                    horizontalPosition = "a";
+                    horizontalPosition = 'a';
                     break;
 
                 case 1:
-                    horizontalPosition = "b";
+                    horizontalPosition = 'b';
                     break;
 
                 case 2:
-                    horizontalPosition = "c";
+                    horizontalPosition = 'c';
                     break;
 
                 case 3:
-                    horizontalPosition = "d";
+                    horizontalPosition = 'd';
                     break;
 
                 case 4:
-                    horizontalPosition = "e";
+                    horizontalPosition = 'e';
                     break;
 
                 case 5:
-                    horizontalPosition = "f";
+                    horizontalPosition = 'f';
                     break;
 
                 case 6:
-                    horizontalPosition = "g";
+                    horizontalPosition = 'g';
                     break;
 
                 case 7:
-                    horizontalPosition = "h";
+                    horizontalPosition = 'h';
                     break;
+
+                default:
+                    throw new ArgumentOutOfRangeException("hotizontalIndex", "Invalid horizontal index.");
             }
 
-            return new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition };
-        }
-
-        public static Position ToPosition(string textPosition)
-        {
-            return new Position
-            {
-                HorizontalPosition = textPosition[0].ToString(CultureInfo.InvariantCulture),
-                VerticalPosition = textPosition[1].ToString(CultureInfo.InvariantCulture)
-            };
+            return new Position(horizontalPosition, verticalPosition);
         }
 
         public static Army ToArmyColor(string color)

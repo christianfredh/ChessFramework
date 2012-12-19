@@ -76,7 +76,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.And("the game has just started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.When("I move e2 to e3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("White move e2 to e3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
  testRunner.Then("then there should be a white pawn at e3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
@@ -99,12 +99,39 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.And("the game has just started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.When("I move d2 to d4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("White move d2 to d4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
  testRunner.Then("then there should be a white pawn at d4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 19
  testRunner.And("d2 should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
+ testRunner.And("it should be Black\'s turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Simple capture")]
+        public virtual void SimpleCapture()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple capture", ((string[])(null)));
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 23
+ testRunner.Given("a new game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+ testRunner.And("the game has just started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.When("White move d2 to d4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+ testRunner.And("Black move e7 to e5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.And("White move d4 to e5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 28
+ testRunner.Then("then there should be a white pawn at e5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
+ testRunner.And("a black pawn should be captured", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
  testRunner.And("it should be Black\'s turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

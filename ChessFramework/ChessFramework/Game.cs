@@ -11,11 +11,13 @@ namespace ChessFramework
         public event EventHandler GameEnded;
         public Army? CurrentTurn { get; private set; }
         public Board Board { get; private set; }
+        public MoveHistory History { get; private set; }
 
         public Game()
         {
             CurrentTurn = null;
             Board = new Board();
+            History = new MoveHistory();
         }
 
         public void Start()
@@ -65,7 +67,9 @@ namespace ChessFramework
                 throw new InvalidMoveException(from, to, string.Format("It is not {0}'s turn to move.", piece.Color));
             }
 
+            var pieceAtToPosition = Board[to].Piece;
             piece.Move(to);
+            History.Moves.Add(new Move { From = from, To = to, CapturedPiece = pieceAtToPosition });
 
             if (HasEnded())
             {

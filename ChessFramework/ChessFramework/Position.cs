@@ -54,6 +54,62 @@ namespace ChessFramework
             VerticalPosition = verticalPosition;
         }
 
+        public Position? PositionToTheRight
+        {
+            get
+            {
+                var newHorizontalPosition = (char)(HorizontalPosition + 1);
+                if (IsValidHorizontalPosition(newHorizontalPosition))
+                {
+                    return new Position(newHorizontalPosition, VerticalPosition);
+                }
+
+                return null;
+            }
+        }
+
+        public Position? PositionToTheLeft
+        {
+            get
+            {
+                var newHorizontalPosition = (char)(HorizontalPosition - 1);
+                if (IsValidHorizontalPosition(newHorizontalPosition))
+                {
+                    return new Position(newHorizontalPosition, VerticalPosition);
+                }
+
+                return null;
+            }
+        }
+
+        public Position? PositionAbove
+        {
+            get
+            {
+                var newVerticalPosition = (char)(VerticalPosition + 1);
+                if (IsValidVerticalPosition(newVerticalPosition))
+                {
+                    return new Position(HorizontalPosition, newVerticalPosition);
+                }
+
+                return null;
+            }
+        }
+
+        public Position? PositionBelow
+        {
+            get
+            {
+                var newVerticalPosition = (char)(VerticalPosition - 1);
+                if (IsValidVerticalPosition(newVerticalPosition))
+                {
+                    return new Position(HorizontalPosition, newVerticalPosition);
+                }
+
+                return null;
+            }
+        }
+
         public override string ToString()
         {
             if (IsValidHorizontalPosition(HorizontalPosition) == false ||

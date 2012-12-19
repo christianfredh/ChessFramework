@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace ChessFramework
@@ -9,24 +7,28 @@ namespace ChessFramework
     {
         public override IEnumerable<Position> GetValidMoves()
         {
-            if (CanMoveOneForward())
+            var moveOneForwardPosition = GetMoveOneForwardPosition(CurrentSquare.Position);
+            if (moveOneForwardPosition != null)
             {
-                yield return GetMoveOneForwardPosition();
+                yield return moveOneForwardPosition.Value;
             }
 
-            if (CanMoveTwoForward())
+            var moveTwoForwardPosition = GetMoveTwoForwardPosition();
+            if (moveTwoForwardPosition != null)
             {
-                yield return GetMoveTwoForwardPosition();
+                yield return moveTwoForwardPosition.Value;
             }
 
-            if (CanCaptureRight())
+            var captureRightPosition = GetCaptureRightPosition();
+            if (captureRightPosition != null)
             {
-                yield return GetCaptureRightPosition();
+                yield return captureRightPosition.Value;
             }
 
-            if (CanCaptureLeft())
+            var captureLeftPosition = GetCaptureLeftPosition();
+            if (captureLeftPosition != null)
             {
-                yield return GetCaptureLeftPosition();
+                yield return captureLeftPosition.Value;
             }
         }
 
@@ -55,85 +57,72 @@ namespace ChessFramework
             }
         }
 
-        private bool CanMoveOneForward()
+        private Position? GetMoveOneForwardPosition(Position from)
         {
-            if (Color == Army.White && CurrentSquare.Position.VerticalPosition == '8')
+            var newPosition = Color == Army.White
+                ? from.PositionAbove
+                : from.PositionBelow;
+
+            return newPosition != null && CurrentSquare.Board.IsFree(newPosition.Value)
+                ? newPosition
+                : null;
+        }
+
+        private Position? GetMoveTwoForwardPosition()
+        {
+            if (IsStartingPosition() == false)
             {
-                return false;
+                return null;
             }
 
-            if (Color == Army.Black && CurrentSquare.Position.VerticalPosition == '1')
+            var moveOneForwardPosition = GetMoveOneForwardPosition(CurrentSquare.Position);
+            return moveOneForwardPosition != null
+                ? GetMoveOneForwardPosition(moveOneForwardPosition.Value)
+                : null;
+        }
+
+        private Position? GetCaptureRightPosition()
+        {
+            var positionOneForward = Color == Army.White 
+                ? CurrentSquare.Position.PositionAbove 
+                : CurrentSquare.Position.PositionBelow;
+
+            if (positionOneForward != null)
             {
-                return false;
+                var capturePosition = positionOneForward.Value.PositionToTheRight;
+                if (capturePosition != null)
+                {
+                    var piece = CurrentSquare.Board[capturePosition.Value].Piece;
+                    if (piece != null && piece.Color != Color)
+                    {
+                        return capturePosition;
+                    }
+                }
             }
 
-            if (CurrentSquare.Board.IsOccupied(GetMoveOneForwardPosition()))
+            return null;
+        }
+
+        private Position? GetCaptureLeftPosition()
+        {
+            var positionOneForward = Color == Army.White
+                ? CurrentSquare.Position.PositionAbove
+                : CurrentSquare.Position.PositionBelow;
+
+            if (positionOneForward != null)
             {
-                return false;
+                var capturePosition = positionOneForward.Value.PositionToTheLeft;
+                if (capturePosition != null)
+                {
+                    var piece = CurrentSquare.Board[capturePosition.Value].Piece;
+                    if (piece != null && piece.Color != Color)
+                    {
+                        return capturePosition;
+                    }
+                }
             }
 
-            return true;
-        }
-
-        private bool CanMoveTwoForward()
-        {
-            return IsStartingPosition() &&
-                   CanMoveOneForward() && 
-                   CurrentSquare.Board.IsFree(GetMoveTwoForwardPosition());
-        }
-
-        private Position GetMoveOneForwardPosition()
-        {
-            return Color == Army.White
-                ? GetPositionAbove(CurrentSquare.Position)
-                : GetPositionBelow(CurrentSquare.Position);
-        }
-
-        private static Position GetPositionBelow(Position position)
-        {
-            var horizontalPosition = position.HorizontalPosition;
-            var verticalPosition = (Convert.ToInt32(position.VerticalPosition.ToString()) - 1).ToString(CultureInfo.InvariantCulture)[0];
-
-            return new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition };
-        }
-
-        private static Position GetPositionAbove(Position position)
-        {
-            var horizontalPosition = position.HorizontalPosition;
-            var verticalPosition = (Convert.ToInt32(position.VerticalPosition.ToString()) + 1).ToString(CultureInfo.InvariantCulture)[0];
-
-            return new Position { HorizontalPosition = horizontalPosition, VerticalPosition = verticalPosition };
-        }
-
-        private Position GetMoveTwoForwardPosition()
-        {
-            return Color == Army.White
-                   ? GetPositionAbove(GetPositionAbove(CurrentSquare.Position))
-                   : GetPositionBelow(GetPositionBelow(CurrentSquare.Position));
-        }
-
-        private bool CanCaptureRight()
-        {
-            // ...
-            return false;
-        }
-
-        private bool CanCaptureLeft()
-        {
-            // ...
-            return false;
-        }
-
-        private Position GetCaptureRightPosition()
-        {
-            // ...
-            return new Position();
-        }
-
-        private Position GetCaptureLeftPosition()
-        {
-            // ...
-            return new Position();
+            return null;
         }
     }
 }
