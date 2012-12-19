@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ChessFramework
 {
@@ -95,6 +96,20 @@ namespace ChessFramework
             {
                 var indicies = ToIndecies(position);
                 return _squares[indicies.Item1, indicies.Item2];
+            }
+        }
+
+        public IEnumerable<Position> AllPositions
+        {
+            get
+            {
+                for (var horizontalPosition = 'a'; horizontalPosition < 'h'; horizontalPosition++)
+                {
+                    for (var verticalPosition = '1'; verticalPosition < '8'; verticalPosition++)
+                    {
+                        yield return new Position(horizontalPosition, verticalPosition);
+                    }
+                }
             }
         }
 

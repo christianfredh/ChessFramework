@@ -32,18 +32,6 @@ namespace ChessFramework
             }
         }
 
-        public override void Move(Position to)
-        {
-            if (GetValidMoves().Contains(to) == false)
-            {
-                throw new InvalidMoveException(CurrentSquare.Position, to, "Invalid move.");
-            }
-
-            CurrentSquare.Piece = null;
-            CurrentSquare.Board[to].Piece = this;
-            CurrentSquare.Board[to].Piece.CurrentSquare = CurrentSquare.Board[to];
-        }
-
         private bool IsStartingPosition()
         {
             switch (Color)

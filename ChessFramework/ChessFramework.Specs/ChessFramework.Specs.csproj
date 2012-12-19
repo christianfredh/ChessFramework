@@ -48,6 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ChessScenario.cs" />
+    <Compile Include="Features\MovingARook.feature.cs">
+      <DependentUpon>MovingARook.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\GameStart.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +76,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\MovingARook.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MovingARook.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\GameStart.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GameStart.feature.cs</LastGenOutput>

@@ -8,10 +8,5 @@ namespace ChessFramework
         {
             throw new System.NotImplementedException();
         }
-
-        public override void Move(Position to)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
