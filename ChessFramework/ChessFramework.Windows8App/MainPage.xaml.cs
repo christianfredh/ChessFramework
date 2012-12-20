@@ -24,11 +24,11 @@ namespace ChessFramework.Windows8App
     public sealed partial class MainPage : ChessFramework.Windows8App.Common.LayoutAwarePage
     {
         private readonly Game _game = new Game();
-        private readonly IDictionary<string, Grid> _squares = new Dictionary<string, Grid>(64);
+        private readonly IDictionary<string, UIElement> _squares = new Dictionary<string, UIElement>(64);
 
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -60,14 +60,14 @@ namespace ChessFramework.Windows8App
             InitSquaresDictionary();
             RenderBoard(_game.Board);
 
-            _game.Move(new Position("e2"), new Position("e3"));
-            RenderBoard(_game.Board);
+            //_game.Move(new Position("e2"), new Position("e3"));
+            //RenderBoard(_game.Board);
 
-            _game.Move(new Position("e7"), new Position("e6"));
-            RenderBoard(_game.Board);
+            //_game.Move(new Position("e7"), new Position("e6"));
+            //RenderBoard(_game.Board);
 
-            _game.Move(new Position("e3"), new Position("e4"));
-            RenderBoard(_game.Board);
+            //_game.Move(new Position("e3"), new Position("e4"));
+            //RenderBoard(_game.Board);
         }
 
         private void InitSquaresDictionary()
@@ -152,17 +152,71 @@ namespace ChessFramework.Windows8App
                 var position = new Position(positionKey);
                 var square = board[position];
 
-                if (_squares[positionKey].Children.Count > 1)
+                var grid = _squares[positionKey] as Grid;
+                if (grid != null)
                 {
-                    _squares[positionKey].Children.RemoveAt(1);
-                }
+                    if (grid.Children.Count > 1)
+                    {
+                        grid.Children.RemoveAt(1);
+                    }
 
-                if (square.IsOccupied())
+                    if (square.IsOccupied())
+                    {
+                        var pieceElement = new PieceElement(square.Piece);
+                        grid.Children.Add(pieceElement);
+                    }
+                }
+                else
                 {
-                    var pieceElement = new PieceElement(square.Piece);
-                    _squares[positionKey].Children.Add(pieceElement);
+                    GridView gridView = _squares[positionKey] as GridView;
+                    if (gridView.Items.Count > 1)
+                    {
+                        gridView.Items.RemoveAt(1);
+                    }
+
+                    if (square.IsOccupied())
+                    {
+                        var pieceElement = new PieceElement(square.Piece);
+                        pieceElement.AllowDrop = true;
+                        gridView.Items.Add(pieceElement);
+                    }
                 }
             }
+        }
+
+        private void OnDragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        {
+            _draggedFrom = sender as GridView;
+            _draggedItems = e.Items.OfType<PieceElement>();
+        }
+
+        private void OnDrop(object sender, DragEventArgs e)
+        {
+            foreach (var piece in _draggedItems)
+            {
+                try
+                {
+                    _game.Move(new Position(_draggedFrom.Name.ToLower()), new Position((sender as GridView).Name.ToLowerInvariant()));
+                    _draggedFrom.Items.Remove(piece);
+                    (sender as GridView).Items.Clear();
+                    (sender as GridView).Items.Add(piece);
+                }
+                catch (InvalidMoveException)
+                {
+                    // Don't make drop
+                }
+
+            }
+        }
+
+        private GridView _draggedFrom;
+        private Grid _draggedFrom2;
+        private IEnumerable<PieceElement> _draggedItems;
+        
+        private void OnDragLeave(object sender, DragEventArgs e)
+        {
+            _draggedFrom2 = sender as Grid;
+            _draggedItems = _draggedFrom2.Children.OfType<PieceElement>();
         }
     }
 }
