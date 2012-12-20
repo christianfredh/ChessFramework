@@ -4,24 +4,24 @@ namespace ChessFramework
 {
     public struct Position
     {
-        public char HorizontalPosition { get; set; }
-        public char VerticalPosition { get; set; }
+        public char File { get; set; }
+        public char Rank { get; set; }
 
-        public Position(char horizontalPosition, char verticalPosition)
+        public Position(char file, char rank)
             : this()
         {
-            if (IsValidHorizontalPosition(horizontalPosition) == false)
+            if (IsValidFile(file) == false)
             {
-                throw new ArgumentOutOfRangeException("horizontalPosition", string.Format("'{0}' is not a valid horizontal position.", horizontalPosition));
+                throw new ArgumentOutOfRangeException("file", string.Format("'{0}' is not a valid file.", file));
             }
 
-            if (IsValidVerticalPosition(verticalPosition) == false)
+            if (IsValidRank(rank) == false)
             {
-                throw new ArgumentOutOfRangeException("verticalPosition", string.Format("'{0}' is not a valid vertical position.", verticalPosition));
+                throw new ArgumentOutOfRangeException("rank", string.Format("'{0}' is not a valid rank.", rank));
             }
 
-            HorizontalPosition = horizontalPosition;
-            VerticalPosition = verticalPosition;
+            File = file;
+            Rank = rank;
         }
 
         public Position(string positionText)
@@ -37,31 +37,31 @@ namespace ChessFramework
                 throw new ArgumentException("Position text must be two characters, first a-h followed by 1-8.");
             }
 
-            var horizontalPosition = positionText[0];
-            var verticalPosition = positionText[1];
+            var file = positionText[0];
+            var rank = positionText[1];
 
-            if (IsValidHorizontalPosition(horizontalPosition) == false)
+            if (IsValidFile(file) == false)
             {
-                throw new ArgumentOutOfRangeException("positionText", string.Format("'{0}' is not a valid horizontal position.", horizontalPosition));
+                throw new ArgumentOutOfRangeException("positionText", string.Format("'{0}' is not a valid file.", file));
             }
 
-            if (IsValidVerticalPosition(verticalPosition) == false)
+            if (IsValidRank(rank) == false)
             {
-                throw new ArgumentOutOfRangeException("positionText", string.Format("'{0}' is not a valid vertical position.", verticalPosition));
+                throw new ArgumentOutOfRangeException("positionText", string.Format("'{0}' is not a valid rank.", rank));
             }
 
-            HorizontalPosition = horizontalPosition;
-            VerticalPosition = verticalPosition;
+            File = file;
+            Rank = rank;
         }
 
         public Position? PositionToTheRight
         {
             get
             {
-                var newHorizontalPosition = (char)(HorizontalPosition + 1);
-                if (IsValidHorizontalPosition(newHorizontalPosition))
+                var newFile = (char)(File + 1);
+                if (IsValidFile(newFile))
                 {
-                    return new Position(newHorizontalPosition, VerticalPosition);
+                    return new Position(newFile, Rank);
                 }
 
                 return null;
@@ -72,10 +72,10 @@ namespace ChessFramework
         {
             get
             {
-                var newHorizontalPosition = (char)(HorizontalPosition - 1);
-                if (IsValidHorizontalPosition(newHorizontalPosition))
+                var newFile = (char)(File - 1);
+                if (IsValidFile(newFile))
                 {
-                    return new Position(newHorizontalPosition, VerticalPosition);
+                    return new Position(newFile, Rank);
                 }
 
                 return null;
@@ -86,10 +86,10 @@ namespace ChessFramework
         {
             get
             {
-                var newVerticalPosition = (char)(VerticalPosition + 1);
-                if (IsValidVerticalPosition(newVerticalPosition))
+                var newRank = (char)(Rank + 1);
+                if (IsValidRank(newRank))
                 {
-                    return new Position(HorizontalPosition, newVerticalPosition);
+                    return new Position(File, newRank);
                 }
 
                 return null;
@@ -100,10 +100,10 @@ namespace ChessFramework
         {
             get
             {
-                var newVerticalPosition = (char)(VerticalPosition - 1);
-                if (IsValidVerticalPosition(newVerticalPosition))
+                var newRank = (char)(Rank - 1);
+                if (IsValidRank(newRank))
                 {
-                    return new Position(HorizontalPosition, newVerticalPosition);
+                    return new Position(File, newRank);
                 }
 
                 return null;
@@ -112,23 +112,23 @@ namespace ChessFramework
 
         public override string ToString()
         {
-            if (IsValidHorizontalPosition(HorizontalPosition) == false ||
-                IsValidVerticalPosition(VerticalPosition) == false)
+            if (IsValidFile(File) == false ||
+                IsValidRank(Rank) == false)
             {
                 return string.Empty;
             }
 
-            return string.Concat(HorizontalPosition, VerticalPosition);
+            return string.Concat(File, Rank);
         }
 
-        private static bool IsValidHorizontalPosition(char horizontalPosition)
+        private static bool IsValidFile(char file)
         {
-            return horizontalPosition >= 'a' && horizontalPosition <= 'h';
+            return file >= 'a' && file <= 'h';
         }
 
-        private static bool IsValidVerticalPosition(char verticalPosition)
+        private static bool IsValidRank(char rank)
         {
-            return verticalPosition >= '1' && verticalPosition <= '8';
+            return rank >= '1' && rank <= '8';
         }
     }
 }

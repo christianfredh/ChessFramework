@@ -37,9 +37,9 @@ namespace ChessFramework
             switch (Color)
             {
                 case Army.White:
-                    return CurrentSquare.Position.VerticalPosition == '2';
+                    return CurrentSquare.Position.Rank == '2';
                 case Army.Black:
-                    return CurrentSquare.Position.VerticalPosition == '7';
+                    return CurrentSquare.Position.Rank == '7';
                 default:
                     return false;
             }

@@ -24,9 +24,9 @@ namespace ChessFramework
 
         private bool IsFreeBetween(Position position)
         {
-            if (CurrentSquare.Position.VerticalPosition == position.VerticalPosition)
+            if (CurrentSquare.Position.Rank == position.Rank)
             {
-                var oneCloserPosition = position.HorizontalPosition < CurrentSquare.Position.HorizontalPosition
+                var oneCloserPosition = position.File < CurrentSquare.Position.File
                     ? position.PositionToTheRight.Value
                     : position.PositionToTheLeft.Value;
 
@@ -34,9 +34,9 @@ namespace ChessFramework
                     (CurrentSquare.Board.IsFree(oneCloserPosition) && IsFreeBetween(oneCloserPosition));
             }
 
-            if (CurrentSquare.Position.HorizontalPosition == position.HorizontalPosition)
+            if (CurrentSquare.Position.File == position.File)
             {
-                var oneCloserPosition = position.VerticalPosition < CurrentSquare.Position.VerticalPosition 
+                var oneCloserPosition = position.Rank < CurrentSquare.Position.Rank 
                     ? position.PositionAbove.Value 
                     : position.PositionBelow.Value;
 

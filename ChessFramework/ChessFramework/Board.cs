@@ -103,11 +103,11 @@ namespace ChessFramework
         {
             get
             {
-                for (var horizontalPosition = 'a'; horizontalPosition < 'h'; horizontalPosition++)
+                for (var file = 'a'; file < 'h'; file++)
                 {
-                    for (var verticalPosition = '1'; verticalPosition < '8'; verticalPosition++)
+                    for (var rank = '1'; rank < '8'; rank++)
                     {
-                        yield return new Position(horizontalPosition, verticalPosition);
+                        yield return new Position(file, rank);
                     }
                 }
             }
@@ -140,47 +140,47 @@ namespace ChessFramework
 
         private static IntPair ToIndecies(Position position)
         {
-            int horizontalIndex;
-            switch (position.HorizontalPosition)
+            int fileIndex;
+            switch (position.File)
             {
                 case 'a':
-                    horizontalIndex = 0;
+                    fileIndex = 0;
                     break;
 
                 case 'b':
-                    horizontalIndex = 1;
+                    fileIndex = 1;
                     break;
 
                 case 'c':
-                    horizontalIndex = 2;
+                    fileIndex = 2;
                     break;
 
                 case 'd':
-                    horizontalIndex = 3;
+                    fileIndex = 3;
                     break;
 
                 case 'e':
-                    horizontalIndex = 4;
+                    fileIndex = 4;
                     break;
 
                 case 'f':
-                    horizontalIndex = 5;
+                    fileIndex = 5;
                     break;
 
                 case 'g':
-                    horizontalIndex = 6;
+                    fileIndex = 6;
                     break;
 
                 case 'h':
-                    horizontalIndex = 7;
+                    fileIndex = 7;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("position", "Invaid positionText.");
             }
 
-            var verticalIndex = Convert.ToInt32(position.VerticalPosition.ToString()) - 1;
+            var rankIndex = Convert.ToInt32(position.Rank.ToString()) - 1;
 
-            var indices = new IntPair(horizontalIndex, verticalIndex);
+            var indices = new IntPair(fileIndex, rankIndex);
             return indices;
         }
 

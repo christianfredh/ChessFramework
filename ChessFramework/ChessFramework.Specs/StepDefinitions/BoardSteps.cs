@@ -16,15 +16,15 @@ namespace ChessFramework.Specs.StepDefinitions
         [Then(@"the board colors should look like")]
         public void ThenTheBoardColorsShouldLookLike(Table table)
         {
-            for (var verticalIndex = 0; verticalIndex < 8; verticalIndex++)
+            for (var rankIndex = 0; rankIndex < 8; rankIndex++)
             {
-                for (var hotizontalIndex = 0; hotizontalIndex < 8; hotizontalIndex++)
+                for (var fileIndex = 0; fileIndex < 8; fileIndex++)
                 {
 
-                    var position = BoardHelper.IndexToPosition(verticalIndex, hotizontalIndex);
+                    var position = BoardHelper.IndexToPosition(rankIndex, fileIndex);
                     var square = ChessScenario.Board[position];
 
-                    var value = table.Rows[verticalIndex][hotizontalIndex];
+                    var value = table.Rows[rankIndex][fileIndex];
 
                     if (value == "W")
                     {
@@ -45,14 +45,14 @@ namespace ChessFramework.Specs.StepDefinitions
         [Then(@"the board should look like")]
         public void ThenTheBoardShouldLookLike(Table table)
         {
-            for (var verticalIndex = 0; verticalIndex < 8; verticalIndex++)
+            for (var rankIndex = 0; rankIndex < 8; rankIndex++)
             {
-                for (var hotizontalIndex = 0; hotizontalIndex < 8; hotizontalIndex++)
+                for (var fileIndex = 0; fileIndex < 8; fileIndex++)
                 {
-                    var position = BoardHelper.IndexToPosition(verticalIndex, hotizontalIndex);
+                    var position = BoardHelper.IndexToPosition(rankIndex, fileIndex);
                     var square = ChessScenario.Board[position];
 
-                    var value = table.Rows[verticalIndex][hotizontalIndex];
+                    var value = table.Rows[rankIndex][fileIndex];
 
                     if (string.IsNullOrWhiteSpace(value))
                     {

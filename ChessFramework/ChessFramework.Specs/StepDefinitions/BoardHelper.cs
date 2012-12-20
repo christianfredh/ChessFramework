@@ -5,49 +5,49 @@ namespace ChessFramework.Specs.StepDefinitions
 {
     public static class BoardHelper
     {
-        public static Position IndexToPosition(int verticalIndex, int hotizontalIndex)
+        public static Position IndexToPosition(int rankIndex, int fileIndex)
         {
-            var verticalPosition = (8 - verticalIndex).ToString(CultureInfo.InvariantCulture)[0];
-            char horizontalPosition;
-            switch (hotizontalIndex)
+            var rank = (8 - rankIndex).ToString(CultureInfo.InvariantCulture)[0];
+            char file;
+            switch (fileIndex)
             {
                 case 0:
-                    horizontalPosition = 'a';
+                    file = 'a';
                     break;
 
                 case 1:
-                    horizontalPosition = 'b';
+                    file = 'b';
                     break;
 
                 case 2:
-                    horizontalPosition = 'c';
+                    file = 'c';
                     break;
 
                 case 3:
-                    horizontalPosition = 'd';
+                    file = 'd';
                     break;
 
                 case 4:
-                    horizontalPosition = 'e';
+                    file = 'e';
                     break;
 
                 case 5:
-                    horizontalPosition = 'f';
+                    file = 'f';
                     break;
 
                 case 6:
-                    horizontalPosition = 'g';
+                    file = 'g';
                     break;
 
                 case 7:
-                    horizontalPosition = 'h';
+                    file = 'h';
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException("hotizontalIndex", "Invalid horizontal index.");
+                    throw new ArgumentOutOfRangeException("fileIndex", "Invalid file index.");
             }
 
-            return new Position(horizontalPosition, verticalPosition);
+            return new Position(file, rank);
         }
 
         public static Army ToArmyColor(string color)
