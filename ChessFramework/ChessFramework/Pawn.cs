@@ -5,9 +5,9 @@ namespace ChessFramework
 {
     public class Pawn : Piece
     {
-        public override IEnumerable<Position> GetValidMoves()
+        public override IEnumerable<SquareIdentifier> GetValidMoves()
         {
-            var moveOneForwardPosition = GetMoveOneForwardPosition(CurrentSquare.Position);
+            var moveOneForwardPosition = GetMoveOneForwardPosition(CurrentSquare.SquareIdentifier);
             if (moveOneForwardPosition != null)
             {
                 yield return moveOneForwardPosition.Value;
@@ -37,15 +37,15 @@ namespace ChessFramework
             switch (Color)
             {
                 case Army.White:
-                    return CurrentSquare.Position.Rank == '2';
+                    return CurrentSquare.SquareIdentifier.Rank == '2';
                 case Army.Black:
-                    return CurrentSquare.Position.Rank == '7';
+                    return CurrentSquare.SquareIdentifier.Rank == '7';
                 default:
                     return false;
             }
         }
 
-        private Position? GetMoveOneForwardPosition(Position from)
+        private SquareIdentifier? GetMoveOneForwardPosition(SquareIdentifier from)
         {
             var newPosition = Color == Army.White
                 ? from.PositionAbove
@@ -56,24 +56,24 @@ namespace ChessFramework
                 : null;
         }
 
-        private Position? GetMoveTwoForwardPosition()
+        private SquareIdentifier? GetMoveTwoForwardPosition()
         {
             if (IsStartingPosition() == false)
             {
                 return null;
             }
 
-            var moveOneForwardPosition = GetMoveOneForwardPosition(CurrentSquare.Position);
+            var moveOneForwardPosition = GetMoveOneForwardPosition(CurrentSquare.SquareIdentifier);
             return moveOneForwardPosition != null
                 ? GetMoveOneForwardPosition(moveOneForwardPosition.Value)
                 : null;
         }
 
-        private Position? GetCaptureRightPosition()
+        private SquareIdentifier? GetCaptureRightPosition()
         {
             var positionOneForward = Color == Army.White 
-                ? CurrentSquare.Position.PositionAbove 
-                : CurrentSquare.Position.PositionBelow;
+                ? CurrentSquare.SquareIdentifier.PositionAbove 
+                : CurrentSquare.SquareIdentifier.PositionBelow;
 
             if (positionOneForward != null)
             {
@@ -91,11 +91,11 @@ namespace ChessFramework
             return null;
         }
 
-        private Position? GetCaptureLeftPosition()
+        private SquareIdentifier? GetCaptureLeftPosition()
         {
             var positionOneForward = Color == Army.White
-                ? CurrentSquare.Position.PositionAbove
-                : CurrentSquare.Position.PositionBelow;
+                ? CurrentSquare.SquareIdentifier.PositionAbove
+                : CurrentSquare.SquareIdentifier.PositionBelow;
 
             if (positionOneForward != null)
             {

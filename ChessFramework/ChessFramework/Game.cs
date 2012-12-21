@@ -44,7 +44,7 @@ namespace ChessFramework
             OnGameEnded();
         }
 
-        public void Move(Position from, Position to)
+        public void Move(SquareIdentifier from, SquareIdentifier to)
         {
             if (_hasStarted == false)
             {

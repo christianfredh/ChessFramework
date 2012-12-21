@@ -2,8 +2,8 @@
 {
     public class Move
     {
-        public Position From { get; set; }
-        public Position To { get; set; }
+        public SquareIdentifier From { get; set; }
+        public SquareIdentifier To { get; set; }
         public Piece CapturedPiece { get; set; }
     }
 }

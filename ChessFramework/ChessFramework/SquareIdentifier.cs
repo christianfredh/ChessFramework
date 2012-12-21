@@ -2,12 +2,12 @@
 
 namespace ChessFramework
 {
-    public struct Position
+    public struct SquareIdentifier
     {
         public char File { get; set; }
         public char Rank { get; set; }
 
-        public Position(char file, char rank)
+        public SquareIdentifier(char file, char rank)
             : this()
         {
             if (IsValidFile(file) == false)
@@ -24,86 +24,86 @@ namespace ChessFramework
             Rank = rank;
         }
 
-        public Position(string positionText)
+        public SquareIdentifier(string label)
             : this()
         {
-            if (positionText == null)
+            if (label == null)
             {
-                throw new ArgumentNullException("positionText", "Position text cannot be null.");
+                throw new ArgumentNullException("label", "Label cannot be null.");
             }
 
-            if (positionText.Length != 2)
+            if (label.Length != 2)
             {
-                throw new ArgumentException("Position text must be two characters, first a-h followed by 1-8.");
+                throw new ArgumentException("Label must be two characters, first a-h followed by 1-8.");
             }
 
-            var file = positionText[0];
-            var rank = positionText[1];
+            var file = label[0];
+            var rank = label[1];
 
             if (IsValidFile(file) == false)
             {
-                throw new ArgumentOutOfRangeException("positionText", string.Format("'{0}' is not a valid file.", file));
+                throw new ArgumentOutOfRangeException("label", string.Format("'{0}' is not a valid file.", file));
             }
 
             if (IsValidRank(rank) == false)
             {
-                throw new ArgumentOutOfRangeException("positionText", string.Format("'{0}' is not a valid rank.", rank));
+                throw new ArgumentOutOfRangeException("label", string.Format("'{0}' is not a valid rank.", rank));
             }
 
             File = file;
             Rank = rank;
         }
 
-        public Position? PositionToTheRight
+        public SquareIdentifier? PositionToTheRight
         {
             get
             {
                 var newFile = (char)(File + 1);
                 if (IsValidFile(newFile))
                 {
-                    return new Position(newFile, Rank);
+                    return new SquareIdentifier(newFile, Rank);
                 }
 
                 return null;
             }
         }
 
-        public Position? PositionToTheLeft
+        public SquareIdentifier? PositionToTheLeft
         {
             get
             {
                 var newFile = (char)(File - 1);
                 if (IsValidFile(newFile))
                 {
-                    return new Position(newFile, Rank);
+                    return new SquareIdentifier(newFile, Rank);
                 }
 
                 return null;
             }
         }
 
-        public Position? PositionAbove
+        public SquareIdentifier? PositionAbove
         {
             get
             {
                 var newRank = (char)(Rank + 1);
                 if (IsValidRank(newRank))
                 {
-                    return new Position(File, newRank);
+                    return new SquareIdentifier(File, newRank);
                 }
 
                 return null;
             }
         }
 
-        public Position? PositionBelow
+        public SquareIdentifier? PositionBelow
         {
             get
             {
                 var newRank = (char)(Rank - 1);
                 if (IsValidRank(newRank))
                 {
-                    return new Position(File, newRank);
+                    return new SquareIdentifier(File, newRank);
                 }
 
                 return null;

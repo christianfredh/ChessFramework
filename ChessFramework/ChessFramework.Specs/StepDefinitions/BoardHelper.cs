@@ -5,7 +5,7 @@ namespace ChessFramework.Specs.StepDefinitions
 {
     public static class BoardHelper
     {
-        public static Position IndexToPosition(int rankIndex, int fileIndex)
+        public static SquareIdentifier IndexToPosition(int rankIndex, int fileIndex)
         {
             var rank = (8 - rankIndex).ToString(CultureInfo.InvariantCulture)[0];
             char file;
@@ -47,7 +47,7 @@ namespace ChessFramework.Specs.StepDefinitions
                     throw new ArgumentOutOfRangeException("fileIndex", "Invalid file index.");
             }
 
-            return new Position(file, rank);
+            return new SquareIdentifier(file, rank);
         }
 
         public static Army ToArmyColor(string color)

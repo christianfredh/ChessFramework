@@ -4,10 +4,10 @@ namespace ChessFramework
 {
     public class InvalidMoveException : Exception
     {
-        public Position From { get; private set; }
-        public Position To { get; private set; }
+        public SquareIdentifier From { get; private set; }
+        public SquareIdentifier To { get; private set; }
 
-        public InvalidMoveException(Position from, Position to, string message)
+        public InvalidMoveException(SquareIdentifier from, SquareIdentifier to, string message)
             : base(message)
         {
             From = from;

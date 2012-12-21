@@ -14,20 +14,20 @@ namespace ChessFramework.Specs.StepDefinitions
             var color = BoardHelper.ToArmyColor(textColor);
             Assert.AreEqual(color, ChessScenario.Game.CurrentTurn);
 
-            ChessScenario.Game.Move(new Position(from), new Position(to));
+            ChessScenario.Game.Move(new SquareIdentifier(from), new SquareIdentifier(to));
         }
 
         [Then(@"then there should be a (.*) (.*) at (.*)")]
         public void ThenThereShouldBe(string textColor, string textPieceType, string textPosition)
         {
-            var position = new Position(textPosition);
+            var position = new SquareIdentifier(textPosition);
             var color = BoardHelper.ToArmyColor(textColor);
             var pieceType = BoardHelper.ToPieceType(textPieceType);
 
             var piece = ChessScenario.Board[position].Piece;
 
             Assert.AreEqual(color, piece.Color);
-            Assert.AreEqual(position, piece.CurrentSquare.Position);
+            Assert.AreEqual(position, piece.CurrentSquare.SquareIdentifier);
             Assert.IsInstanceOf(pieceType, piece);
 
         }
@@ -35,7 +35,7 @@ namespace ChessFramework.Specs.StepDefinitions
         [Then(@"(.*) should be empty")]
         public void ThenPositionShouldBeEmpty(string textPosition)
         {
-            var position = new Position(textPosition);
+            var position = new SquareIdentifier(textPosition);
             Assert.IsNull(ChessScenario.Board[position].Piece);
         }
 

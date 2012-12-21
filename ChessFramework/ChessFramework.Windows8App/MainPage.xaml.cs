@@ -60,13 +60,13 @@ namespace ChessFramework.Windows8App
             InitSquaresDictionary();
             RenderBoard(_game.Board);
 
-            //_game.Move(new Position("e2"), new Position("e3"));
+            //_game.Move(new SquareIdentifier("e2"), new SquareIdentifier("e3"));
             //RenderBoard(_game.Board);
 
-            //_game.Move(new Position("e7"), new Position("e6"));
+            //_game.Move(new SquareIdentifier("e7"), new SquareIdentifier("e6"));
             //RenderBoard(_game.Board);
 
-            //_game.Move(new Position("e3"), new Position("e4"));
+            //_game.Move(new SquareIdentifier("e3"), new SquareIdentifier("e4"));
             //RenderBoard(_game.Board);
         }
 
@@ -149,7 +149,7 @@ namespace ChessFramework.Windows8App
         {
             foreach (var positionKey in _squares.Keys)
             {
-                var position = new Position(positionKey);
+                var position = new SquareIdentifier(positionKey);
                 var square = board[position];
 
                 var grid = _squares[positionKey] as Grid;
@@ -196,7 +196,7 @@ namespace ChessFramework.Windows8App
             {
                 try
                 {
-                    _game.Move(new Position(_draggedFrom.Name.ToLower()), new Position((sender as GridView).Name.ToLowerInvariant()));
+                    _game.Move(new SquareIdentifier(_draggedFrom.Name.ToLower()), new SquareIdentifier((sender as GridView).Name.ToLowerInvariant()));
                     _draggedFrom.Items.Remove(piece);
                     (sender as GridView).Items.Clear();
                     (sender as GridView).Items.Add(piece);

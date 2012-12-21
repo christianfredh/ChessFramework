@@ -8,11 +8,11 @@ namespace ChessFramework
         public Army Color { get; set; }
         public Square CurrentSquare { get; set; }
 
-        public void Move(Position to)
+        public void Move(SquareIdentifier to)
         {
             if (GetValidMoves().Contains(to) == false)
             {
-                throw new InvalidMoveException(CurrentSquare.Position, to, string.Format("{0} to {1} is an invalid move.", CurrentSquare.Position, to));
+                throw new InvalidMoveException(CurrentSquare.SquareIdentifier, to, string.Format("{0} to {1} is an invalid move.", CurrentSquare.SquareIdentifier, to));
             }
 
             CurrentSquare.Piece = null;
@@ -20,6 +20,6 @@ namespace ChessFramework
             CurrentSquare.Board[to].Piece.CurrentSquare = CurrentSquare.Board[to];
         }
 
-        public abstract IEnumerable<Position> GetValidMoves();
+        public abstract IEnumerable<SquareIdentifier> GetValidMoves();
     }
 }

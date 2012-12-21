@@ -4,7 +4,7 @@ namespace ChessFramework
 {
     public class Queen : Piece
     {
-        public override IEnumerable<Position> GetValidMoves()
+        public override IEnumerable<SquareIdentifier> GetValidMoves()
         {
             throw new System.NotImplementedException();
         }

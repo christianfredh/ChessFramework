@@ -90,16 +90,16 @@ namespace ChessFramework
             InitializePosition("h8", SquareColor.Black, new Rook { Color = Army.Black });
         }
 
-        public Square this[Position position]
+        public Square this[SquareIdentifier squareIdentifier]
         {
             get
             {
-                var indicies = ToIndecies(position);
+                var indicies = ToIndecies(squareIdentifier);
                 return _squares[indicies.Item1, indicies.Item2];
             }
         }
 
-        public IEnumerable<Position> AllPositions
+        public IEnumerable<SquareIdentifier> AllPositions
         {
             get
             {
@@ -107,27 +107,27 @@ namespace ChessFramework
                 {
                     for (var rank = '1'; rank < '8'; rank++)
                     {
-                        yield return new Position(file, rank);
+                        yield return new SquareIdentifier(file, rank);
                     }
                 }
             }
         }
 
-        public bool IsOccupied(Position position)
+        public bool IsOccupied(SquareIdentifier squareIdentifier)
         {
-            return this[position].IsOccupied();
+            return this[squareIdentifier].IsOccupied();
         }
 
-        public bool IsFree(Position position)
+        public bool IsFree(SquareIdentifier squareIdentifier)
         {
-            return this[position].IsFree();
+            return this[squareIdentifier].IsFree();
         }
 
         private void InitializePosition(string positionText, SquareColor squareColor, Piece piece)
         {
-            var position = new Position(positionText);
+            var position = new SquareIdentifier(positionText);
             var square = this[position];
-            square.Position = position;
+            square.SquareIdentifier = position;
             square.Color = squareColor;
             square.Piece = piece;
             square.Board = this;
@@ -138,10 +138,10 @@ namespace ChessFramework
             }
         }
 
-        private static IntPair ToIndecies(Position position)
+        private static IntPair ToIndecies(SquareIdentifier squareIdentifier)
         {
             int fileIndex;
-            switch (position.File)
+            switch (squareIdentifier.File)
             {
                 case 'a':
                     fileIndex = 0;
@@ -175,10 +175,10 @@ namespace ChessFramework
                     fileIndex = 7;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("position", "Invaid positionText.");
+                    throw new ArgumentOutOfRangeException("squareIdentifier", "Invaid label.");
             }
 
-            var rankIndex = Convert.ToInt32(position.Rank.ToString()) - 1;
+            var rankIndex = Convert.ToInt32(squareIdentifier.Rank.ToString()) - 1;
 
             var indices = new IntPair(fileIndex, rankIndex);
             return indices;

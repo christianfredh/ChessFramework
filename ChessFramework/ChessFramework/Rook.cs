@@ -5,42 +5,42 @@ namespace ChessFramework
 {
     public class Rook : Piece
     {
-        public override IEnumerable<Position> GetValidMoves()
+        public override IEnumerable<SquareIdentifier> GetValidMoves()
         {
             return CurrentSquare.Board.AllPositions
-                         .Where(p => Equals(p, CurrentSquare.Position) == false)
+                         .Where(p => Equals(p, CurrentSquare.SquareIdentifier) == false)
                          .Where(IsInReach);
         }
 
-        private bool IsInReach(Position position)
+        private bool IsInReach(SquareIdentifier squareIdentifier)
         {
-            if (CurrentSquare.Board[position].IsOccupied() &&
-                CurrentSquare.Board[position].Piece.Color == Color)
+            if (CurrentSquare.Board[squareIdentifier].IsOccupied() &&
+                CurrentSquare.Board[squareIdentifier].Piece.Color == Color)
             {
                 return false;
             }
-            return IsFreeBetween(position);
+            return IsFreeBetween(squareIdentifier);
         }
 
-        private bool IsFreeBetween(Position position)
+        private bool IsFreeBetween(SquareIdentifier squareIdentifier)
         {
-            if (CurrentSquare.Position.Rank == position.Rank)
+            if (CurrentSquare.SquareIdentifier.Rank == squareIdentifier.Rank)
             {
-                var oneCloserPosition = position.File < CurrentSquare.Position.File
-                    ? position.PositionToTheRight.Value
-                    : position.PositionToTheLeft.Value;
+                var oneCloserPosition = squareIdentifier.File < CurrentSquare.SquareIdentifier.File
+                    ? squareIdentifier.PositionToTheRight.Value
+                    : squareIdentifier.PositionToTheLeft.Value;
 
-                return oneCloserPosition.Equals(CurrentSquare.Position) ||
+                return oneCloserPosition.Equals(CurrentSquare.SquareIdentifier) ||
                     (CurrentSquare.Board.IsFree(oneCloserPosition) && IsFreeBetween(oneCloserPosition));
             }
 
-            if (CurrentSquare.Position.File == position.File)
+            if (CurrentSquare.SquareIdentifier.File == squareIdentifier.File)
             {
-                var oneCloserPosition = position.Rank < CurrentSquare.Position.Rank 
-                    ? position.PositionAbove.Value 
-                    : position.PositionBelow.Value;
+                var oneCloserPosition = squareIdentifier.Rank < CurrentSquare.SquareIdentifier.Rank 
+                    ? squareIdentifier.PositionAbove.Value 
+                    : squareIdentifier.PositionBelow.Value;
 
-                return oneCloserPosition.Equals(CurrentSquare.Position) || 
+                return oneCloserPosition.Equals(CurrentSquare.SquareIdentifier) || 
                     (CurrentSquare.Board.IsFree(oneCloserPosition) && IsFreeBetween(oneCloserPosition));
             }
 
