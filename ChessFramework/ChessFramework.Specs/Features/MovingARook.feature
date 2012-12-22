@@ -3,7 +3,7 @@
 	to move and capture 
 	according to chess rules
 
-Scenario: Move one step
+Scenario: Move White's left rook
 	Given a new game
 	And the game has just started
 	When White move a2 to a3
@@ -12,6 +12,17 @@ Scenario: Move one step
 	Then then there should be a white rook at a2
 	And a1 should be empty
 	And it should be Black's turn
+
+Scenario: Move Black's right rook
+	Given a new game
+	And the game has just started
+	When White move e2 to e3
+	And Black move h7 to h5
+	And  White move d2 to d3
+	And Black move h8 to h6
+	Then then there should be a black rook at h6
+	And h8 should be empty
+	And it should be White's turn
 
 Scenario: Capture
 	Given a new game

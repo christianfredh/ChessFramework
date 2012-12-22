@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ChessFramework
 {
+    [DebuggerDisplay("{Color} {GetType().Name,nq}")]
     public abstract class Piece
     {
         public Army Color { get; set; }

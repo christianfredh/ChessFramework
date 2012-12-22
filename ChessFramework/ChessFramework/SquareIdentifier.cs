@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace ChessFramework
 {
+    [DebuggerDisplay("{ToString(),nq}")]
     public struct SquareIdentifier
     {
         public char File { get; set; }

@@ -1,5 +1,8 @@
-﻿namespace ChessFramework
+﻿using System.Diagnostics;
+
+namespace ChessFramework
 {
+    [DebuggerDisplay("Identifier: {Identifier.ToString()} Piece: {Piece.Color} {Piece.GetType().Name,nq}")]
     public class Square
     {
         public Board Board { get; set; }
