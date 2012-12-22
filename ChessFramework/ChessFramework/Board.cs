@@ -104,9 +104,9 @@ namespace ChessFramework
         {
             get
             {
-                for (var file = 'a'; file < 'h'; file++)
+                for (var file = 'a'; file <= 'h'; file++)
                 {
-                    for (var rank = '1'; rank < '8'; rank++)
+                    for (var rank = '1'; rank <= '8'; rank++)
                     {
                         yield return new SquareIdentifier(file, rank);
                     }
