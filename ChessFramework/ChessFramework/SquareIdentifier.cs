@@ -54,62 +54,6 @@ namespace ChessFramework
             Rank = rank;
         }
 
-        public SquareIdentifier? PositionToTheRight
-        {
-            get
-            {
-                var newFile = (char)(File + 1);
-                if (IsValidFile(newFile))
-                {
-                    return new SquareIdentifier(newFile, Rank);
-                }
-
-                return null;
-            }
-        }
-
-        public SquareIdentifier? PositionToTheLeft
-        {
-            get
-            {
-                var newFile = (char)(File - 1);
-                if (IsValidFile(newFile))
-                {
-                    return new SquareIdentifier(newFile, Rank);
-                }
-
-                return null;
-            }
-        }
-
-        public SquareIdentifier? PositionAbove
-        {
-            get
-            {
-                var newRank = (char)(Rank + 1);
-                if (IsValidRank(newRank))
-                {
-                    return new SquareIdentifier(File, newRank);
-                }
-
-                return null;
-            }
-        }
-
-        public SquareIdentifier? PositionBelow
-        {
-            get
-            {
-                var newRank = (char)(Rank - 1);
-                if (IsValidRank(newRank))
-                {
-                    return new SquareIdentifier(File, newRank);
-                }
-
-                return null;
-            }
-        }
-
         public override string ToString()
         {
             if (IsValidFile(File) == false ||
@@ -121,12 +65,12 @@ namespace ChessFramework
             return string.Concat(File, Rank);
         }
 
-        private static bool IsValidFile(char file)
+        internal static bool IsValidFile(char file)
         {
             return file >= 'a' && file <= 'h';
         }
 
-        private static bool IsValidRank(char rank)
+        internal static bool IsValidRank(char rank)
         {
             return rank >= '1' && rank <= '8';
         }

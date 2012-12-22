@@ -27,7 +27,7 @@ namespace ChessFramework.Specs.StepDefinitions
             var piece = ChessScenario.Board[position].Piece;
 
             Assert.AreEqual(color, piece.Color);
-            Assert.AreEqual(position, piece.CurrentSquare.SquareIdentifier);
+            Assert.AreEqual(position, piece.CurrentSquare.Identifier);
             Assert.IsInstanceOf(pieceType, piece);
 
         }
