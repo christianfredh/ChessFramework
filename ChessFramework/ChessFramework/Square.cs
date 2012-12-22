@@ -10,12 +10,9 @@
         {
             get
             {
-                if ((Identifier.File + Identifier.Rank) % 2 == 1)
-                {
-                    return SquareColor.White;
-                }
-
-                return SquareColor.Black;
+                return (Identifier.File + Identifier.Rank) % 2 == 1 
+                    ? SquareColor.White 
+                    : SquareColor.Black;
             }
         }
 
@@ -24,12 +21,9 @@
             get
             {
                 var newFile = (char)(Identifier.File + 1);
-                if (SquareIdentifier.IsValidFile(newFile))
-                {
-                    return Board[new SquareIdentifier(newFile, Identifier.Rank)];
-                }
-
-                return null;
+                return SquareIdentifier.IsValidFile(newFile) 
+                    ? Board[new SquareIdentifier(newFile, Identifier.Rank)] 
+                    : null;
             }
         }
 
@@ -38,12 +32,9 @@
             get
             {
                 var newFile = (char)(Identifier.File - 1);
-                if (SquareIdentifier.IsValidFile(newFile))
-                {
-                    return Board[new SquareIdentifier(newFile, Identifier.Rank)];
-                }
-
-                return null;
+                return SquareIdentifier.IsValidFile(newFile) 
+                    ? Board[new SquareIdentifier(newFile, Identifier.Rank)] 
+                    : null;
             }
         }
 
@@ -52,12 +43,9 @@
             get
             {
                 var newRank = (char)(Identifier.Rank + 1);
-                if (SquareIdentifier.IsValidRank(newRank))
-                {
-                    return Board[new SquareIdentifier(Identifier.File, newRank)];
-                }
-
-                return null;
+                return SquareIdentifier.IsValidRank(newRank) 
+                    ? Board[new SquareIdentifier(Identifier.File, newRank)] 
+                    : null;
             }
         }
 
@@ -66,12 +54,9 @@
             get
             {
                 var newRank = (char)(Identifier.Rank - 1);
-                if (SquareIdentifier.IsValidRank(newRank))
-                {
-                    return Board[new SquareIdentifier(Identifier.File, newRank)];
-                }
-
-                return null;
+                return SquareIdentifier.IsValidRank(newRank) 
+                    ? Board[new SquareIdentifier(Identifier.File, newRank)] 
+                    : null;
             }
         }
 
