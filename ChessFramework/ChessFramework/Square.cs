@@ -2,7 +2,7 @@
 
 namespace ChessFramework
 {
-    [DebuggerDisplay("Identifier: {Identifier.ToString()} Piece: {Piece.Color} {Piece.GetType().Name,nq}")]
+    [DebuggerDisplay("Identifier: {Identifier.ToString()} Piece: {Piece != null ? Piece.Color.ToString() + \" \" + Piece.GetType().Name : \"None\",nq}")]
     public class Square
     {
         public Board Board { get; set; }
