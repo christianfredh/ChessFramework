@@ -48,6 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ChessScenario.cs" />
+    <Compile Include="Features\MovingAKing.feature.cs">
+      <DependentUpon>MovingAKing.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\MovingAKnight.feature.cs">
+      <DependentUpon>MovingAKnight.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\MovingARook.feature.cs">
       <DependentUpon>MovingARook.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -76,6 +86,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\MovingAKing.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MovingAKing.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\MovingAKnight.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MovingAKnight.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\MovingARook.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MovingARook.feature.cs</LastGenOutput>

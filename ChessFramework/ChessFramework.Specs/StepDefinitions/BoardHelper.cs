@@ -78,7 +78,7 @@ namespace ChessFramework.Specs.StepDefinitions
                 case "pawn":
                     return typeof(Pawn);
                 default:
-                    throw new ArgumentOutOfRangeException("textPieceType", "Invalid piece type.");
+                    throw new ArgumentOutOfRangeException("textPieceType", string.Format("Invalid piece type: '{0}'", textPieceType));
             }
         }
     }
