@@ -48,6 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ChessScenario.cs" />
+    <Compile Include="Features\MovingAQueen.feature.cs">
+      <DependentUpon>MovingAQueen.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\MovingABishop.feature.cs">
+      <DependentUpon>MovingABishop.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\MovingAKing.feature.cs">
       <DependentUpon>MovingAKing.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -86,6 +96,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\MovingAQueen.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MovingAQueen.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\MovingABishop.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MovingABishop.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\MovingAKing.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MovingAKing.feature.cs</LastGenOutput>

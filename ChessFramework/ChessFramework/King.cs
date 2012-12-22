@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ChessFramework
 {
@@ -7,39 +8,22 @@ namespace ChessFramework
     {
         public override IEnumerable<SquareIdentifier> GetValidMoves()
         {
-            var validMoves = new List<SquareIdentifier>();
-            foreach (var func in GetBaseMovesFuncs())
-            {
-                try
-                {
-                    var validSquare = func();
-                    if (validSquare.IsFree() || validSquare.Piece.Color != Color)
-                    {
-                        validMoves.Add(validSquare.Identifier);
-                    }
-
-                    // TODO: Cannot move if the king is in check at new location....
-                }
-                catch (NullReferenceException)
-                {
-                    // Outside the board
-                }
-            }
-
-            return validMoves;
+            return GetBaseMoves()
+                .Where(move => move != null && (move.IsFree() || move.Piece.Color != Color))
+                .Select(move => move.Identifier);
         }
 
-        private IEnumerable<Func<Square>> GetBaseMovesFuncs()
+        private IEnumerable<Square> GetBaseMoves()
         {
-            yield return () => CurrentSquare.SquareAbove;
-            yield return () => CurrentSquare.SquareBelow;
-            yield return () => CurrentSquare.SquareToTheRight;
-            yield return () => CurrentSquare.SquareToTheLeft;
+            yield return CurrentSquare.SquareAbove;
+            yield return CurrentSquare.SquareBelow;
+            yield return CurrentSquare.SquareToTheRight;
+            yield return CurrentSquare.SquareToTheLeft;
 
-            yield return () => CurrentSquare.SquareAbove.SquareToTheLeft;
-            yield return () => CurrentSquare.SquareAbove.SquareToTheRight;
-            yield return () => CurrentSquare.SquareBelow.SquareToTheLeft;
-            yield return () => CurrentSquare.SquareBelow.SquareToTheRight;
+            yield return CurrentSquare.SquareDiagonallyUpAndRight;
+            yield return CurrentSquare.SquareDiagonallyUpAndLeft;
+            yield return CurrentSquare.SquareDiagonallyDownAndRight;
+            yield return CurrentSquare.SquareDiagonallyDownAndLeft;
         }
     }
 }

@@ -31,17 +31,17 @@ namespace ChessFramework
 
         private IEnumerable<Func<Square>> GetBaseMovesFuncs()
         {
-            yield return () => CurrentSquare.SquareAbove.SquareAbove.SquareToTheLeft;
-            yield return () => CurrentSquare.SquareAbove.SquareAbove.SquareToTheRight;
+            yield return () => CurrentSquare.SquareAbove.SquareDiagonallyUpAndLeft;
+            yield return () => CurrentSquare.SquareAbove.SquareDiagonallyUpAndRight;
 
-            yield return () => CurrentSquare.SquareBelow.SquareBelow.SquareToTheLeft;
-            yield return () => CurrentSquare.SquareBelow.SquareBelow.SquareToTheRight;
+            yield return () => CurrentSquare.SquareBelow.SquareDiagonallyDownAndLeft;
+            yield return () => CurrentSquare.SquareBelow.SquareDiagonallyDownAndRight;
 
-            yield return () => CurrentSquare.SquareToTheLeft.SquareToTheLeft.SquareBelow;
-            yield return () => CurrentSquare.SquareToTheLeft.SquareToTheLeft.SquareAbove;
+            yield return () => CurrentSquare.SquareToTheRight.SquareDiagonallyUpAndRight;
+            yield return () => CurrentSquare.SquareToTheRight.SquareDiagonallyDownAndRight;
 
-            yield return () => CurrentSquare.SquareToTheRight.SquareToTheRight.SquareBelow;
-            yield return () => CurrentSquare.SquareToTheRight.SquareToTheRight.SquareAbove;
+            yield return () => CurrentSquare.SquareToTheLeft.SquareDiagonallyUpAndLeft;
+            yield return () => CurrentSquare.SquareToTheLeft.SquareDiagonallyDownAndLeft;
         }
     }
 }

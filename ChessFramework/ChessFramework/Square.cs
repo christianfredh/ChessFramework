@@ -13,8 +13,8 @@ namespace ChessFramework
         {
             get
             {
-                return (Identifier.File + Identifier.Rank) % 2 == 1 
-                    ? SquareColor.White 
+                return (Identifier.File + Identifier.Rank) % 2 == 1
+                    ? SquareColor.White
                     : SquareColor.Black;
             }
         }
@@ -24,8 +24,8 @@ namespace ChessFramework
             get
             {
                 var newFile = (char)(Identifier.File + 1);
-                return SquareIdentifier.IsValidFile(newFile) 
-                    ? Board[new SquareIdentifier(newFile, Identifier.Rank)] 
+                return SquareIdentifier.IsValidFile(newFile)
+                    ? Board[new SquareIdentifier(newFile, Identifier.Rank)]
                     : null;
             }
         }
@@ -35,8 +35,8 @@ namespace ChessFramework
             get
             {
                 var newFile = (char)(Identifier.File - 1);
-                return SquareIdentifier.IsValidFile(newFile) 
-                    ? Board[new SquareIdentifier(newFile, Identifier.Rank)] 
+                return SquareIdentifier.IsValidFile(newFile)
+                    ? Board[new SquareIdentifier(newFile, Identifier.Rank)]
                     : null;
             }
         }
@@ -46,8 +46,8 @@ namespace ChessFramework
             get
             {
                 var newRank = (char)(Identifier.Rank + 1);
-                return SquareIdentifier.IsValidRank(newRank) 
-                    ? Board[new SquareIdentifier(Identifier.File, newRank)] 
+                return SquareIdentifier.IsValidRank(newRank)
+                    ? Board[new SquareIdentifier(Identifier.File, newRank)]
                     : null;
             }
         }
@@ -57,8 +57,48 @@ namespace ChessFramework
             get
             {
                 var newRank = (char)(Identifier.Rank - 1);
-                return SquareIdentifier.IsValidRank(newRank) 
-                    ? Board[new SquareIdentifier(Identifier.File, newRank)] 
+                return SquareIdentifier.IsValidRank(newRank)
+                    ? Board[new SquareIdentifier(Identifier.File, newRank)]
+                    : null;
+            }
+        }
+
+        public Square SquareDiagonallyUpAndRight
+        {
+            get
+            {
+                return SquareAbove != null
+                    ? SquareAbove.SquareToTheRight
+                    : null;
+            }
+        }
+
+        public Square SquareDiagonallyUpAndLeft
+        {
+            get
+            {
+                return SquareAbove != null
+                    ? SquareAbove.SquareToTheLeft
+                    : null;
+            }
+        }
+
+        public Square SquareDiagonallyDownAndRight
+        {
+            get
+            {
+                return SquareBelow != null
+                    ? SquareBelow.SquareToTheRight
+                    : null;
+            }
+        }
+
+        public Square SquareDiagonallyDownAndLeft
+        {
+            get
+            {
+                return SquareBelow != null
+                    ? SquareBelow.SquareToTheLeft
                     : null;
             }
         }
