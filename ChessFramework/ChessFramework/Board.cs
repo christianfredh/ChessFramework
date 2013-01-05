@@ -119,6 +119,32 @@ namespace ChessFramework
             get { return AllPositions.Select(p => this[p]); }
         }
 
+        internal IEnumerable<Square> GetThretenedSquares(Army threatenedBy)
+        {
+            var pieces = from square in Squares
+                         let piece = square.Piece
+                         where piece != null && piece.Color == threatenedBy
+                         select piece;
+
+            var threatenedSquares = pieces
+                .SelectMany(square => square.GetThreatenedSquares())
+                .Distinct();
+
+            return threatenedSquares;
+        }
+
+        internal Square GetKingSquare(Army color)
+        {
+            return Squares.First(s => s.Piece is King && s.Piece.Color == color);
+        }
+
+        internal bool IsInCheck(Army color)
+        {
+            var otherColor = color == Army.White ? Army.Black : Army.White;
+            return GetThretenedSquares(otherColor)
+                .Contains(GetKingSquare(color));
+        }
+
         public bool IsOccupied(SquareIdentifier squareIdentifier)
         {
             return this[squareIdentifier].IsOccupied();

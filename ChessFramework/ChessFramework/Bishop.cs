@@ -11,25 +11,36 @@ namespace ChessFramework
         private readonly Func<Square, Square> _squareDownRight = square => square.SquareDiagonallyDownAndRight;
         private readonly Func<Square, Square> _squareDownLeft = square => square.SquareDiagonallyDownAndLeft;
 
-        public override IEnumerable<SquareIdentifier> GetValidMoves()
+        public override IEnumerable<SquareIdentifier> GetPossibleMoves()
         {
-            var validSquares = new List<Square>();
-            validSquares.AddRange(GetSquaresDiagonally(CurrentSquare, _squareUpRight));
-            validSquares.AddRange(GetSquaresDiagonally(CurrentSquare, _squareUpLeft));
-            validSquares.AddRange(GetSquaresDiagonally(CurrentSquare, _squareDownRight));
-            validSquares.AddRange(GetSquaresDiagonally(CurrentSquare, _squareDownLeft));
-
-            return validSquares.Select(square => square.Identifier);
+            return GetThreatenedSquares()
+                .Where(square => IsKingInCheckAfterMove(square.Identifier) == false)
+                .Select(square => square.Identifier);
         }
 
-        private IEnumerable<Square> GetSquaresDiagonally(Square square, Func<Square, Square> directionFunc)
+        internal override IEnumerable<Square> GetThreatenedSquares()
         {
-            var diagonalSquare = directionFunc(square);
             var squares = new List<Square>();
-            if (CanMoveTo(diagonalSquare))
+            squares.AddRange(GetSquaresInDirection(CurrentSquare, _squareUpRight));
+            squares.AddRange(GetSquaresInDirection(CurrentSquare, _squareUpLeft));
+            squares.AddRange(GetSquaresInDirection(CurrentSquare, _squareDownRight));
+            squares.AddRange(GetSquaresInDirection(CurrentSquare, _squareDownLeft));
+
+            return squares;
+        }
+
+        private IEnumerable<Square> GetSquaresInDirection(Square square, Func<Square, Square> directionFunc)
+        {
+            var squareInDirection = directionFunc(square);
+            var squares = new List<Square>();
+            if (CanMoveTo(squareInDirection))
             {
-                squares.Add(diagonalSquare);
-                squares.AddRange(GetSquaresDiagonally(diagonalSquare, directionFunc));
+                squares.Add(squareInDirection);
+
+                if (squareInDirection.IsFree())
+                {
+                    squares.AddRange(GetSquaresInDirection(squareInDirection, directionFunc));
+                }
             }
 
             return squares;

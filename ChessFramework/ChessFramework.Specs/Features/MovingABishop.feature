@@ -12,3 +12,15 @@ Scenario: Move White's left bishop
 	Then then there should be a white bishop at f4
 	And c1 should be empty
 	And it should be Black's turn
+
+Scenario: Bishop cannot jump over other pieces
+	Given a new game
+	And the game has just started
+	When White move e2 to e3
+	And Black move b7 to b5
+	Then White should be able to move f1 to
+	| To |
+	| b5 |
+	| c4 |
+	| d3 |
+	| e2 |

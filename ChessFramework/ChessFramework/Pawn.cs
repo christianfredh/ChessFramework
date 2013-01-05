@@ -5,31 +5,54 @@ namespace ChessFramework
 {
     public class Pawn : Piece
     {
-        public override IEnumerable<SquareIdentifier> GetValidMoves()
+        public override IEnumerable<SquareIdentifier> GetPossibleMoves()
         {
-            var moveOneForwardPosition = GetMoveOneForwardSquare(CurrentSquare);
-            if (moveOneForwardPosition != null)
+            return GetPossibleMovesBeforeCheck()
+                .ToList()
+                .Where(square => IsKingInCheckAfterMove(square) == false);
+        }
+
+        private IEnumerable<SquareIdentifier> GetPossibleMovesBeforeCheck()
+        {
+            var oneForwardSquare = GetMoveOneForwardSquare(CurrentSquare);
+            if (oneForwardSquare != null)
             {
-                yield return moveOneForwardPosition.Identifier;
+                yield return oneForwardSquare.Identifier;
             }
 
-            var moveTwoForwardPosition = GetMoveTwoForwardPosition();
-            if (moveTwoForwardPosition != null)
+            var twoForwardSquare = GetMoveTwoForwardSquare();
+            if (twoForwardSquare != null)
             {
-                yield return moveTwoForwardPosition.Identifier;
+                yield return twoForwardSquare.Identifier;
             }
 
+            foreach (var threatenedSquare in GetThreatenedSquaresWithCapture())
+            {
+                yield return threatenedSquare.Identifier;
+            }
+        }
+
+        internal override IEnumerable<Square> GetThreatenedSquares()
+        {
             var captureRightPosition = GetCaptureRightSquare();
             if (captureRightPosition != null)
             {
-                yield return captureRightPosition.Identifier;
+                yield return captureRightPosition;
             }
 
             var captureLeftPosition = GetCaptureLeftSquare();
             if (captureLeftPosition != null)
             {
-                yield return captureLeftPosition.Identifier;
+                yield return captureLeftPosition;
             }
+        }
+
+        private IEnumerable<Square> GetThreatenedSquaresWithCapture()
+        {
+            return GetThreatenedSquares()
+                .Where(square => square != null 
+                    && square.Piece != null 
+                    && square.Piece.Color != Color);
         }
 
         private bool IsStartingSquare()
@@ -56,7 +79,7 @@ namespace ChessFramework
                 : null;
         }
 
-        private Square GetMoveTwoForwardPosition()
+        private Square GetMoveTwoForwardSquare()
         {
             if (IsStartingSquare() == false)
             {
@@ -75,20 +98,9 @@ namespace ChessFramework
                 ? CurrentSquare.SquareAbove 
                 : CurrentSquare.SquareBelow;
 
-            if (oneForwardSquare != null)
-            {
-                var captureSquare = oneForwardSquare.SquareToTheRight;
-                if (captureSquare != null)
-                {
-                    var piece = captureSquare.Piece;
-                    if (piece != null && piece.Color != Color)
-                    {
-                        return captureSquare;
-                    }
-                }
-            }
-
-            return null;
+            return oneForwardSquare != null 
+                ? oneForwardSquare.SquareToTheRight 
+                : null;
         }
 
         private Square GetCaptureLeftSquare()
@@ -97,20 +109,9 @@ namespace ChessFramework
                 ? CurrentSquare.SquareAbove
                 : CurrentSquare.SquareBelow;
 
-            if (oneForwardSquare != null)
-            {
-                var captureSquare = oneForwardSquare.SquareToTheLeft;
-                if (captureSquare != null)
-                {
-                    var piece = captureSquare.Piece;
-                    if (piece != null && piece.Color != Color)
-                    {
-                        return captureSquare;
-                    }
-                }
-            }
-
-            return null;
+            return oneForwardSquare != null 
+                ? oneForwardSquare.SquareToTheLeft 
+                : null;
         }
     }
 }

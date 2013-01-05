@@ -12,7 +12,7 @@ namespace ChessFramework
 
         public void Move(SquareIdentifier to)
         {
-            if (GetValidMoves().Contains(to) == false)
+            if (GetPossibleMoves().Contains(to) == false)
             {
                 throw new InvalidMoveException(CurrentSquare.Identifier, to, string.Format("{0} to {1} is an invalid move.", CurrentSquare.Identifier, to));
             }
@@ -22,6 +22,29 @@ namespace ChessFramework
             CurrentSquare.Board[to].Piece.CurrentSquare = CurrentSquare.Board[to];
         }
 
-        public abstract IEnumerable<SquareIdentifier> GetValidMoves();
+        public abstract IEnumerable<SquareIdentifier> GetPossibleMoves();
+        internal abstract IEnumerable<Square> GetThreatenedSquares();
+
+        protected bool IsKingInCheckAfterMove(SquareIdentifier squareIdentifier)
+        {
+            var board = CurrentSquare.Board;
+
+
+            var squareBefore = CurrentSquare;
+            var squareAfter = board[squareIdentifier];
+            var pieceAtNewSquare = squareAfter.Piece;
+
+            CurrentSquare.Piece = null;
+            CurrentSquare = squareAfter;
+            squareAfter.Piece = this;
+
+            var isInCheckAfterMove = board.IsInCheck(Color);
+
+            squareBefore.Piece = this;
+            squareAfter.Piece = pieceAtNewSquare;
+            CurrentSquare = squareBefore;
+            
+            return isInCheckAfterMove;
+        }
     }
 }

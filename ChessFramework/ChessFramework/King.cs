@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace ChessFramework
 {
     public class King : Piece
     {
-        public override IEnumerable<SquareIdentifier> GetValidMoves()
+        public override IEnumerable<SquareIdentifier> GetPossibleMoves()
+        {
+            return GetThreatenedSquares()
+                .Where(square => IsKingInCheckAfterMove(square.Identifier) == false)
+                .Select(square => square.Identifier);
+        }
+
+        internal override IEnumerable<Square> GetThreatenedSquares()
         {
             return GetBaseMoves()
-                .Where(move => move != null && (move.IsFree() || move.Piece.Color != Color))
-                .Select(move => move.Identifier);
+                .Where(move => move != null && (move.IsFree() || move.Piece.Color != Color));
         }
 
         private IEnumerable<Square> GetBaseMoves()

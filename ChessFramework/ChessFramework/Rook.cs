@@ -5,12 +5,18 @@ namespace ChessFramework
 { 
     public class Rook : Piece
     {
-        public override IEnumerable<SquareIdentifier> GetValidMoves()
+        public override IEnumerable<SquareIdentifier> GetPossibleMoves()
+        {
+            return GetThreatenedSquares()
+                .Where(square => IsKingInCheckAfterMove(square.Identifier) == false)
+                .Select(square => square.Identifier);
+        }
+
+        internal override IEnumerable<Square> GetThreatenedSquares()
         {
             return CurrentSquare.Board.Squares
                          .Where(s => Equals(s, CurrentSquare) == false)
-                         .Where(IsInReach)
-                         .Select(s => s.Identifier);
+                         .Where(IsInReach);
         }
 
         private bool IsInReach(Square square)

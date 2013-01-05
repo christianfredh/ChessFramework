@@ -1,13 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ChessFramework
 {
     public class Knight : Piece
     {
-        public override IEnumerable<SquareIdentifier> GetValidMoves()
+        public override IEnumerable<SquareIdentifier> GetPossibleMoves()
         {
-            var validMoves = new List<SquareIdentifier>();
+            return GetThreatenedSquares()
+                .Where(square => IsKingInCheckAfterMove(square.Identifier) == false)
+                .Select(square => square.Identifier);
+        }
+
+        internal override IEnumerable<Square> GetThreatenedSquares()
+        {
+            var threatenedSquares = new List<Square>();
             foreach (var func in GetBaseMovesFuncs())
             {
                 try
@@ -15,10 +23,8 @@ namespace ChessFramework
                     var validSquare = func();
                     if (validSquare.IsFree() || validSquare.Piece.Color != Color)
                     {
-                        validMoves.Add(validSquare.Identifier);
+                        threatenedSquares.Add(validSquare);
                     }
-
-                    // TODO: Cannot move if the king is left in check....
                 }
                 catch (NullReferenceException)
                 {
@@ -26,7 +32,7 @@ namespace ChessFramework
                 }
             }
 
-            return validMoves;
+            return threatenedSquares;
         }
 
         private IEnumerable<Func<Square>> GetBaseMovesFuncs()
