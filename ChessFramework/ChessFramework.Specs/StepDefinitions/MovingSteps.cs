@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ChessFramework.Specs.Context;
+using FluentAssertions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -13,7 +14,10 @@ namespace ChessFramework.Specs.StepDefinitions
         public void WhenMoving(string textColor, string from, string to)
         {
             var color = BoardHelper.ToArmyColor(textColor);
-            Assert.AreEqual(color, ChessScenario.Game.CurrentTurn);
+
+            ChessScenario.Game.CurrentTurn
+                .Should()
+                .Be(color);
 
             ChessScenario.Game.Move(new SquareIdentifier(from), new SquareIdentifier(to));
         }
@@ -27,29 +31,31 @@ namespace ChessFramework.Specs.StepDefinitions
 
             var piece = ChessScenario.Board[position].Piece;
 
-            Assert.AreEqual(color, piece.Color);
-            Assert.AreEqual(position, piece.CurrentSquare.Identifier);
-            Assert.IsInstanceOf(pieceType, piece);
-
+            piece.Color.Should().Be(color);
+            piece.CurrentSquare.Identifier.Should().Be(position);
+            piece.GetType().Should().Be(pieceType);
         }
 
         [Then(@"(.*) should be empty")]
         public void ThenPositionShouldBeEmpty(string textPosition)
         {
             var position = new SquareIdentifier(textPosition);
-            Assert.IsNull(ChessScenario.Board[position].Piece);
+            var square = ChessScenario.Board[position];
+
+            square.Piece.Should().BeNull();
+            square.IsFree().Should().BeTrue();
         }
 
         [Then(@"a black pawn should be captured")]
         public void ThenABlackPawnShouldBeCaptured()
         {
-            Assert.AreEqual(1, ChessScenario.Game
-                                       .History
-                                       .Moves
-                                       .Count(move =>
-                                            move.CapturedPiece != null &&
-                                            move.CapturedPiece.Color == Army.Black &&
-                                            move.CapturedPiece is Pawn));
+            ChessScenario.Game.History.Moves
+                         .Where(move =>
+                                move.CapturedPiece != null &&
+                                move.CapturedPiece.Color == Army.Black &&
+                                move.CapturedPiece is Pawn)
+                         .Should()
+                         .HaveCount(1);
         }
 
         [Then(@"(.*) should be able to move (.*) to")]
@@ -65,16 +71,9 @@ namespace ChessFramework.Specs.StepDefinitions
                 .Select(row => new SquareIdentifier(row[0]))
                 .ToList();
 
-            // TODO: FluentAssertions...
-
-            var possibleMoves = piece.GetPossibleMoves().ToList();
-
-            Assert.AreEqual(tos.Count(), possibleMoves.Count());
-
-            foreach (var expectedMove in tos)
-            {
-                Assert.Contains(expectedMove, possibleMoves);
-            }
+            piece.GetPossibleMoves()
+                .Should()
+                .BeEquivalentTo(tos);
         }
     }
 }

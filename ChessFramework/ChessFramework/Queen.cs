@@ -44,7 +44,11 @@ namespace ChessFramework
             if (CanMoveTo(squareInDirection))
             {
                 squares.Add(squareInDirection);
-                squares.AddRange(GetSquaresInDirection(squareInDirection, directionFunc));
+
+                if (squareInDirection.IsFree())
+                {
+                    squares.AddRange(GetSquaresInDirection(squareInDirection, directionFunc));
+                }
             }
 
             return squares;

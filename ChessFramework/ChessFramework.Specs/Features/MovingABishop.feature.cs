@@ -122,6 +122,40 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Must protect king if in check")]
+        public virtual void MustProtectKingIfInCheck()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Must protect king if in check", ((string[])(null)));
+#line 28
+this.ScenarioSetup(scenarioInfo);
+#line 29
+ testRunner.Given("a new game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 30
+ testRunner.And("the game has just started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+ testRunner.When("White move e2 to e4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
+ testRunner.And("Black move d7 to d5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+ testRunner.And("White move e4 to d5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
+ testRunner.And("Black move d8 to d5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+ testRunner.And("White move a2 to a3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+ testRunner.And("Black move d5 to e5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "To"});
+            table2.AddRow(new string[] {
+                        "e2"});
+#line 37
+ testRunner.Then("White should be able to move f1 to", ((string)(null)), table2, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -24,3 +24,16 @@ Scenario: Bishop cannot jump over other pieces
 	| c4 |
 	| d3 |
 	| e2 |
+
+Scenario: Must protect king if in check
+	Given a new game
+	And the game has just started
+	When White move e2 to e4
+	And Black move d7 to d5
+	And White move e4 to d5
+	And Black move d8 to d5
+	And White move a2 to a3
+	And Black move d5 to e5
+	Then White should be able to move f1 to
+	| To |
+	| e2 |
