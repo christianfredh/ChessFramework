@@ -62,7 +62,7 @@ namespace ChessFramework.Specs.StepDefinitions
         public void ThenShouldBeAbleToMoveTo(string textColor, string textFrom, Table toOptions)
         {
             var color = BoardHelper.ToArmyColor(textColor);
-            Assert.AreEqual(color, ChessScenario.Game.CurrentTurn);
+            ChessScenario.Game.CurrentTurn.Should().Be(color);
 
             var from = new SquareIdentifier(textFrom);
             var piece = ChessScenario.Board[from].Piece;
