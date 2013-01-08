@@ -10,16 +10,29 @@ namespace ChessFramework
         public Army Color { get; set; }
         public Square CurrentSquare { get; set; }
 
-        public void Move(SquareIdentifier to)
+        public virtual void Move(SquareIdentifier to)
         {
             if (GetPossibleMoves().Contains(to) == false)
             {
                 throw new InvalidMoveException(CurrentSquare.Identifier, to, string.Format("{0} to {1} is an invalid move.", CurrentSquare.Identifier, to));
             }
 
+            var from = CurrentSquare.Identifier;
+            var movedPiece = this;
+            var capturedPiece = CurrentSquare.Board[to].Piece;
+
             CurrentSquare.Piece = null;
             CurrentSquare.Board[to].Piece = this;
             CurrentSquare.Board[to].Piece.CurrentSquare = CurrentSquare.Board[to];
+
+            CurrentSquare.Board.History.Moves.Add(
+                new Move
+                {
+                    From = from,
+                    To = to,
+                    MovedPiece = movedPiece,
+                    CapturedPiece = capturedPiece
+                });
         }
 
         public abstract IEnumerable<SquareIdentifier> GetPossibleMoves();
@@ -43,7 +56,7 @@ namespace ChessFramework
             squareBefore.Piece = this;
             squareAfter.Piece = pieceAtNewSquare;
             CurrentSquare = squareBefore;
-            
+
             return isInCheckAfterMove;
         }
     }

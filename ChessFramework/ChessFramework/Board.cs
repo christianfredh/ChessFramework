@@ -6,10 +6,13 @@ namespace ChessFramework
 {
     public class Board
     {
+        public MoveHistory History { get; private set; }
         private readonly Square[,] _squares = new Square[8, 8];
 
         public Board()
         {
+            History = new MoveHistory();
+
             for (var i = 0; i < 8; i++)
             {
                 for (var j = 0; j < 8; j++)

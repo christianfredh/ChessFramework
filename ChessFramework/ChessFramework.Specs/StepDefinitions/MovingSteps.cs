@@ -49,7 +49,7 @@ namespace ChessFramework.Specs.StepDefinitions
         [Then(@"a black pawn should be captured")]
         public void ThenABlackPawnShouldBeCaptured()
         {
-            ChessScenario.Game.History.Moves
+            ChessScenario.Game.Board.History.Moves
                          .Where(move =>
                                 move.CapturedPiece != null &&
                                 move.CapturedPiece.Color == Army.Black &&
@@ -75,5 +75,14 @@ namespace ChessFramework.Specs.StepDefinitions
                 .Should()
                 .BeEquivalentTo(tos);
         }
+
+        [Then(@"a total of (.*) moves should be registered")]
+        public void ThenATotalOfMovesShouldBeRegistered(int totalMoves)
+        {
+            ChessScenario.Game.Board.History.Moves
+                .Should()
+                .HaveCount(totalMoves);
+        }
+
     }
 }
