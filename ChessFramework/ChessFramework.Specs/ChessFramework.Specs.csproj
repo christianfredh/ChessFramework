@@ -91,6 +91,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewBoard.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Resigning.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resigning.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\BoardHelper.cs" />
     <Compile Include="StepDefinitions\BoardSteps.cs" />
@@ -130,6 +135,10 @@
     <None Include="Features\NewBoard.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NewBoard.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Resigning.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Resigning.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

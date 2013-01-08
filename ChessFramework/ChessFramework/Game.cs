@@ -11,6 +11,7 @@ namespace ChessFramework
         public event EventHandler NewTurn;
         public event EventHandler GameEnded;
         public Army? CurrentTurn { get; private set; }
+        public Army? Winner { get; private set; }
         public Board Board { get; private set; }
 
         public Game()
@@ -38,6 +39,7 @@ namespace ChessFramework
                 throw new InvalidOperationException("Game has already ended.");
             }
 
+            Winner = CurrentTurn == Army.White ? Army.Black : Army.White;
             CurrentTurn = null;
             _hasEnded = true;
             OnGameEnded();

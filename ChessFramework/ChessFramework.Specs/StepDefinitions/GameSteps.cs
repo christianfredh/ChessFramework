@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using ChessFramework.Specs.Context;
+using FluentAssertions;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -25,7 +26,9 @@ namespace ChessFramework.Specs.StepDefinitions
         [Then(@"it should be (.*)")]
         public void ThenItShouldBeTurn(Army army)
         {
-            Assert.AreEqual(army, ChessScenario.Game.CurrentTurn);
+            ChessScenario.Game.CurrentTurn
+                   .Should()
+                   .Be(army);
         }
 
         [StepArgumentTransformation("(.*)'s turn")]
@@ -38,6 +41,24 @@ namespace ChessFramework.Specs.StepDefinitions
             }
 
             return army;
+        }
+
+        [When(@"(.*) resigns")]
+        public void WhenWhiteResigns(string color)
+        {
+            var army = BoardHelper.ToArmyColor(color);
+            ChessScenario.Game.CurrentTurn
+                .Should()
+                .Be(army);
+
+            ChessScenario.Game.Resign();
+        }
+
+        [Then(@"(.*) should be the winner")]
+        public void ThenBlackShouldBeTheWinner(string color)
+        {
+            var army = BoardHelper.ToArmyColor(color);
+            ChessScenario.Game.Winner.Should().Be(army);
         }
     }
 }
