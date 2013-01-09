@@ -82,7 +82,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.And("White move a1 to a2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.Then("then there should be a white rook at a2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("there should be a white rook at a2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
  testRunner.And("a1 should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
@@ -111,7 +111,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 22
  testRunner.And("Black move h8 to h6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
- testRunner.Then("then there should be a black rook at h6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("there should be a black rook at h6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 24
  testRunner.And("h8 should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
@@ -146,7 +146,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 36
  testRunner.And("White move b3 to b7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
- testRunner.Then("then there should be a white rook at b7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("there should be a white rook at b7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 38
  testRunner.And("a black pawn should be captured", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39

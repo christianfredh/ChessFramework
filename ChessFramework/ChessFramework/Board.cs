@@ -6,6 +6,7 @@ namespace ChessFramework
 {
     public class Board
     {
+        internal Func<PromotionChoice> PromotionChoice { get; set; }
         public MoveHistory History { get; private set; }
         private readonly Square[,] _squares = new Square[8, 8];
 

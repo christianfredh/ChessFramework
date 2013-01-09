@@ -16,7 +16,7 @@ namespace ChessFramework
         {
             if (GetPossibleMoves().Contains(to) == false)
             {
-                throw new InvalidMoveException(CurrentSquare.Identifier, to, string.Format("{0} to {1} is an invalid move.", CurrentSquare.Identifier, to));
+                throw new IllegalMoveException(CurrentSquare.Identifier, to, string.Format("{0} to {1} is an invalid move.", CurrentSquare.Identifier, to));
             }
 
             var from = CurrentSquare.Identifier;
@@ -39,7 +39,7 @@ namespace ChessFramework
                     toSquare.SquareAbove.Piece = null;
                 }
             }
-            
+
             toSquare.Piece = this;
             toSquare.Piece.CurrentSquare = toSquare;
 
@@ -51,6 +51,37 @@ namespace ChessFramework
                     MovedPiece = movedPiece,
                     CapturedPiece = capturedPiece
                 });
+
+            if (IsPromotionSquare(toSquare))
+            {
+                Piece promotedPiece;
+
+                switch (CurrentSquare.Board.PromotionChoice())
+                {
+                    case PromotionChoice.Rook:
+                        promotedPiece = new Rook();
+                        break;
+                    case PromotionChoice.Bishop:
+                        promotedPiece = new Bishop();
+                        break;
+                    case PromotionChoice.Knight:
+                        promotedPiece = new Knight();
+                        break;
+                    default:
+                        promotedPiece = new Queen();
+                        break;
+                }
+
+                promotedPiece.CurrentSquare = toSquare;
+                toSquare.Piece = promotedPiece;
+            }
+        }
+
+        private bool IsPromotionSquare(Square square)
+        {
+            return Color == Army.White
+                ? square.Identifier.Rank == '8'
+                : square.Identifier.Rank == '1';
         }
 
         private IEnumerable<SquareIdentifier> GetPossibleMovesBeforeCheck()

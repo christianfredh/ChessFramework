@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using ChessFramework.Specs.Context;
 using FluentAssertions;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace ChessFramework.Specs.StepDefinitions
@@ -21,8 +19,16 @@ namespace ChessFramework.Specs.StepDefinitions
 
             ChessScenario.Game.Move(new SquareIdentifier(from), new SquareIdentifier(to));
         }
+        [When(@"(.*) promotes to (.*) when moving (.*) to (.*)")]
+        public void WhenMoving(string textColor, string promoteTo, string from, string to)
+        {
+            var promotionChoice = BoardHelper.ToPromotionChoice(promoteTo);
+            ChessScenario.Game.PromotionChoice = () => promotionChoice;
 
-        [Then(@"then there should be a (.*) (.*) at (.*)")]
+            WhenMoving(textColor, from, to);
+        }
+
+        [Then(@"there should be a (.*) (.*) at (.*)")]
         public void ThenThereShouldBe(string textColor, string textPieceType, string textPosition)
         {
             var position = new SquareIdentifier(textPosition);
@@ -83,6 +89,5 @@ namespace ChessFramework.Specs.StepDefinitions
                 .Should()
                 .HaveCount(totalMoves);
         }
-
     }
 }

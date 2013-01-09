@@ -9,7 +9,7 @@ Scenario: Move White's left rook
 	When White move a2 to a3
 	And Black move e7 to e5
 	And  White move a1 to a2
-	Then then there should be a white rook at a2
+	Then there should be a white rook at a2
 	And a1 should be empty
 	And it should be Black's turn
 
@@ -20,7 +20,7 @@ Scenario: Move Black's right rook
 	And Black move h7 to h5
 	And  White move d2 to d3
 	And Black move h8 to h6
-	Then then there should be a black rook at h6
+	Then there should be a black rook at h6
 	And h8 should be empty
 	And it should be White's turn
 
@@ -34,6 +34,6 @@ Scenario: Capture
 	And White move a3 to b3
 	And Black move e5 to e4
 	And White move b3 to b7
-	Then then there should be a white rook at b7
+	Then there should be a white rook at b7
 	And a black pawn should be captured
 	And it should be Black's turn

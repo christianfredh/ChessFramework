@@ -78,7 +78,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("White move b1 to c3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then("then there should be a white knight at c3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("there should be a white knight at c3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
  testRunner.And("b1 should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12

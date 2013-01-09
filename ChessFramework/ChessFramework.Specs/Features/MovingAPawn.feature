@@ -25,7 +25,7 @@ Scenario: Simple capture
 	When White move d2 to d4
 	And Black move e7 to e5
 	And White move d4 to e5
-	Then then there should be a white pawn at e5
+	Then there should be a white pawn at e5
 	And a black pawn should be captured
 	And it should be Black's turn
 
@@ -37,7 +37,7 @@ Scenario: En passant
 	And White move e4 to e5
 	And Black move d7 to d5
 	And White move e5 to d6
-	Then then there should be a white pawn at d6
+	Then there should be a white pawn at d6
 	And d5 should be empty
 	And a total of 5 moves should be registered
 	And a black pawn should be captured

@@ -14,6 +14,12 @@ namespace ChessFramework
         public Army? Winner { get; private set; }
         public Board Board { get; private set; }
 
+        public Func<PromotionChoice> PromotionChoice
+        {
+            get { return Board.PromotionChoice; }
+            set { Board.PromotionChoice = value; }
+        }
+
         public Game()
         {
             CurrentTurn = null;
@@ -25,6 +31,11 @@ namespace ChessFramework
             if (_hasStarted)
             {
                 throw new InvalidOperationException("Game has already started.");
+            }
+
+            if (PromotionChoice == null)
+            {
+                throw new InvalidOperationException("Game must have a way of promoting a pawn.");
             }
 
             CurrentTurn = Army.White;
@@ -60,12 +71,12 @@ namespace ChessFramework
             var piece = Board[from].Piece;
             if (piece == null)
             {
-                throw new InvalidMoveException(from, to, "No piece to move at the location.");
+                throw new IllegalMoveException(from, to, "No piece to move at the location.");
             }
 
             if (piece.Color != CurrentTurn)
             {
-                throw new InvalidMoveException(from, to, string.Format("It is not {0}'s turn to move.", piece.Color));
+                throw new IllegalMoveException(from, to, string.Format("It is not {0}'s turn to move.", piece.Color));
             }
 
             piece.Move(to);

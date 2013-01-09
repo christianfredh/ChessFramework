@@ -14,7 +14,7 @@ namespace ChessFramework
         {
             if (GetPossibleMoves().Contains(to) == false)
             {
-                throw new InvalidMoveException(CurrentSquare.Identifier, to, string.Format("{0} to {1} is an invalid move.", CurrentSquare.Identifier, to));
+                throw new IllegalMoveException(CurrentSquare.Identifier, to, string.Format("{0} to {1} is an invalid move.", CurrentSquare.Identifier, to));
             }
 
             var from = CurrentSquare.Identifier;

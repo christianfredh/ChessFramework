@@ -28,6 +28,8 @@ namespace ChessFramework.Windows8App
 
         public MainPage()
         {
+            // TODO: UI for choice
+            _game.PromotionChoice = () => PromotionChoice.Knight;
             InitializeComponent();
         }
 
@@ -59,15 +61,6 @@ namespace ChessFramework.Windows8App
             _game.Start();
             InitSquaresDictionary();
             RenderBoard(_game.Board);
-
-            //_game.Move(new SquareIdentifier("e2"), new SquareIdentifier("e3"));
-            //RenderBoard(_game.Board);
-
-            //_game.Move(new SquareIdentifier("e7"), new SquareIdentifier("e6"));
-            //RenderBoard(_game.Board);
-
-            //_game.Move(new SquareIdentifier("e3"), new SquareIdentifier("e4"));
-            //RenderBoard(_game.Board);
         }
 
         private void InitSquaresDictionary()
@@ -196,12 +189,15 @@ namespace ChessFramework.Windows8App
             {
                 try
                 {
-                    _game.Move(new SquareIdentifier(_draggedFrom.Name.ToLower()), new SquareIdentifier((sender as GridView).Name.ToLowerInvariant()));
+                    var grid = (GridView)sender;
+                    var from = new SquareIdentifier(_draggedFrom.Name.ToLower());
+                    var to = new SquareIdentifier(grid.Name.ToLowerInvariant());
+                    _game.Move(from, to);
                     _draggedFrom.Items.Remove(piece);
-                    (sender as GridView).Items.Clear();
-                    (sender as GridView).Items.Add(piece);
+                    grid.Items.Clear();
+                    grid.Items.Add(new PieceElement(_game.Board[to].Piece));
                 }
-                catch (InvalidMoveException)
+                catch (IllegalMoveException)
                 {
                     // Don't make drop
                 }
@@ -210,13 +206,6 @@ namespace ChessFramework.Windows8App
         }
 
         private GridView _draggedFrom;
-        private Grid _draggedFrom2;
         private IEnumerable<PieceElement> _draggedItems;
-        
-        private void OnDragLeave(object sender, DragEventArgs e)
-        {
-            _draggedFrom2 = sender as Grid;
-            _draggedItems = _draggedFrom2.Children.OfType<PieceElement>();
-        }
     }
 }

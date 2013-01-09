@@ -91,6 +91,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewBoard.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Promotion.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Promotion.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Resigning.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,6 +140,10 @@
     <None Include="Features\NewBoard.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NewBoard.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Promotion.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Promotion.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Resigning.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

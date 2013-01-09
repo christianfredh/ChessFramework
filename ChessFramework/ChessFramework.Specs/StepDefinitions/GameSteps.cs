@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Globalization;
 using ChessFramework.Specs.Context;
 using FluentAssertions;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace ChessFramework.Specs.StepDefinitions
@@ -13,7 +11,10 @@ namespace ChessFramework.Specs.StepDefinitions
         [Given(@"a new game")]
         public void GivenANewGame()
         {
-            ChessScenario.Game = new Game();
+            ChessScenario.Game = new Game
+            {
+                PromotionChoice = () => PromotionChoice.Queen
+            };
         }
 
         [Given(@"the game has just started")]

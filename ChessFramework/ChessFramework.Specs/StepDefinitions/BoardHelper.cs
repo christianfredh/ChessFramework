@@ -61,6 +61,17 @@ namespace ChessFramework.Specs.StepDefinitions
             return army;
         }
 
+        public static PromotionChoice ToPromotionChoice(string textPromotionChoice)
+        {
+            PromotionChoice promotionChoice;
+            if (Enum.TryParse(textPromotionChoice, true, out promotionChoice) == false)
+            {
+                throw new ArgumentOutOfRangeException("textPromotionChoice", "Invalid piece choice.");
+            }
+
+            return promotionChoice;
+        }
+
         public static Type ToPieceType(string textPieceType)
         {
             switch (textPieceType.ToLowerInvariant())
