@@ -37,6 +37,7 @@ namespace ChessFramework.Specs.StepDefinitions
 
             var piece = ChessScenario.Board[position].Piece;
 
+            piece.Should().NotBeNull(string.Format("there should be a piece at {0}", position));
             piece.Color.Should().Be(color);
             piece.CurrentSquare.Identifier.Should().Be(position);
             piece.GetType().Should().Be(pieceType);

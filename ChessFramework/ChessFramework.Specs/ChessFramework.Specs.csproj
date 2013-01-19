@@ -51,6 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ChessScenario.cs" />
+    <Compile Include="Features\Castling.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Castling.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\MovingAQueen.feature.cs">
       <DependentUpon>MovingAQueen.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -109,6 +114,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\Castling.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Castling.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\MovingAQueen.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MovingAQueen.feature.cs</LastGenOutput>
