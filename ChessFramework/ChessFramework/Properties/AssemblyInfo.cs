@@ -8,7 +8,7 @@
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Christian Fredh")]
 [assembly: AssemblyProduct("Chess Framework")]
-[assembly: AssemblyCopyright("Copyright © Christian Fredh 2012")]
+[assembly: AssemblyCopyright("Copyright © Christian Fredh 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
