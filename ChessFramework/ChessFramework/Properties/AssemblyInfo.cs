@@ -4,7 +4,7 @@
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ChessFramework")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Chess Framework Portable Library simple implementation of chess games in .NET.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Christian Fredh")]
 [assembly: AssemblyProduct("Chess Framework")]
