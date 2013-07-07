@@ -24,7 +24,7 @@ namespace ChessFramework.Windows8App
     public sealed partial class MainPage : ChessFramework.Windows8App.Common.LayoutAwarePage
     {
         private readonly Game _game = new Game();
-        private readonly IDictionary<string, UIElement> _squares = new Dictionary<string, UIElement>(64);
+        private readonly IDictionary<string, GridView> _squares = new Dictionary<string, GridView>(64);
 
         public MainPage()
         {
@@ -145,34 +145,30 @@ namespace ChessFramework.Windows8App
                 var position = new SquareIdentifier(positionKey);
                 var square = board[position];
 
-                var grid = _squares[positionKey] as Grid;
-                if (grid != null)
-                {
-                    if (grid.Children.Count > 1)
-                    {
-                        grid.Children.RemoveAt(1);
-                    }
+                var gridView = _squares[positionKey];
+                var element = gridView.Items.FirstOrDefault() as PieceElement;
 
+                if (element != null)
+                {
                     if (square.IsOccupied())
                     {
-                        var pieceElement = new PieceElement(square.Piece);
-                        grid.Children.Add(pieceElement);
+                        if (element.PieceType != square.Piece.GetType()
+                            || element.Color != square.Piece.Color)
+                        {
+                            gridView.Items.Clear();
+                            var pieceElement = new PieceElement(square.Piece);
+                            gridView.Items.Add(pieceElement);
+                        }
+                    }
+                    else
+                    {
+                        gridView.Items.Clear();
                     }
                 }
-                else
+                else if (square.IsOccupied())
                 {
-                    GridView gridView = _squares[positionKey] as GridView;
-                    if (gridView.Items.Count > 1)
-                    {
-                        gridView.Items.RemoveAt(1);
-                    }
-
-                    if (square.IsOccupied())
-                    {
-                        var pieceElement = new PieceElement(square.Piece);
-                        pieceElement.AllowDrop = true;
-                        gridView.Items.Add(pieceElement);
-                    }
+                    var pieceElement = new PieceElement(square.Piece);
+                    gridView.Items.Add(pieceElement);
                 }
             }
         }
@@ -180,32 +176,30 @@ namespace ChessFramework.Windows8App
         private void OnDragItemsStarting(object sender, DragItemsStartingEventArgs e)
         {
             _draggedFrom = sender as GridView;
-            _draggedItems = e.Items.OfType<PieceElement>();
+            _draggedPiece = e.Items.OfType<PieceElement>().First();
         }
 
         private void OnDrop(object sender, DragEventArgs e)
         {
-            foreach (var piece in _draggedItems)
+            try
             {
-                try
-                {
-                    var grid = (GridView)sender;
-                    var from = new SquareIdentifier(_draggedFrom.Name.ToLower());
-                    var to = new SquareIdentifier(grid.Name.ToLowerInvariant());
-                    _game.Move(from, to);
-                    _draggedFrom.Items.Remove(piece);
-                    grid.Items.Clear();
-                    grid.Items.Add(new PieceElement(_game.Board[to].Piece));
-                }
-                catch (IllegalMoveException)
-                {
-                    // Don't make drop
-                }
+                var grid = (GridView)sender;
+                var from = new SquareIdentifier(_draggedFrom.Name.ToLower());
+                var to = new SquareIdentifier(grid.Name.ToLowerInvariant());
+                _game.Move(from, to);
 
+                _draggedFrom.Items.Remove(_draggedPiece);
+                grid.Items.Clear();
+                grid.Items.Add(new PieceElement(_game.Board[to].Piece));
+                RenderBoard(_game.Board);
+            }
+            catch (IllegalMoveException)
+            {
+                // Don't make drop
             }
         }
 
         private GridView _draggedFrom;
-        private IEnumerable<PieceElement> _draggedItems;
+        private PieceElement _draggedPiece;
     }
 }
