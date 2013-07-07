@@ -90,5 +90,22 @@ namespace ChessFramework.Specs.StepDefinitions
                 .Should()
                 .HaveCount(totalMoves);
         }
+
+        [Then(@"(.*) should not be able to move (.*) to (.*)")]
+        public void ShouldNotBeAbleToMoveTo(string textColor, string textFrom, string textTo)
+        {
+            var color = BoardHelper.ToArmyColor(textColor);
+            ChessScenario.Game.CurrentTurn.Should().Be(color);
+
+            var from = new SquareIdentifier(textFrom);
+            var piece = ChessScenario.Board[from].Piece;
+
+            var to = new SquareIdentifier(textTo);
+
+            piece.GetPossibleMoves()
+                .Should()
+                .NotContain(to);
+        }
+
     }
 }
