@@ -80,10 +80,19 @@ namespace ChessFramework
                 yield break;
             }
 
-            yield return CurrentSquare.SquareToTheRight.SquareToTheRight;
+            var kingsideRock = CurrentSquare.SquareToTheRight.SquareToTheRight.SquareToTheRight.Piece as Rook;
+
+            if (CurrentSquare.Board.History.Moves
+                .Any(move => move.MovedPiece == kingsideRock) == false)
+            {
+                yield return CurrentSquare.SquareToTheRight.SquareToTheRight;
+            }
+
             yield return CurrentSquare.SquareToTheLeft.SquareToTheLeft;
 
             // TODO: Implement restrictions
+
+            
         }
     }
 }
