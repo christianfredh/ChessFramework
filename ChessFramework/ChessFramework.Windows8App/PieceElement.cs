@@ -11,6 +11,7 @@ namespace ChessFramework.Windows8App
 
         public PieceElement(Piece piece)
         {
+            AllowDrop = true;
             PieceType = piece.GetType();
             Color = piece.Color;
 
