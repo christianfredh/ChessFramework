@@ -138,8 +138,21 @@ Scenario: Black's kingside casteling - Cannot castle if rock has moved
 Scenario: Black's queenside casteling - Cannot castle if rock has moved
 	Given TODO
 
-Scenario: Cannot castle if there are pieces in between
-	Given TODO
+Scenario: White's kingside casteling - Cannot castle if there are pieces in between
+	Given a new game
+	And the game has just started
+	When White move g1 to h3
+	And Black move e7 to e6
+	And White move e2 to e3
+	And Black move e6 to e5
+	And White move f1 to e2
+	And Black move e5 to e4
+	And White move h1 to g1
+	And Black move a7 to a6
+	And White move g1 to h1
+	And Black move a6 to a5
+	Then White should not be able to move e1 to g1
+
 Scenario: Cannot castle if king is in check
 	Given TODO
 Scenario: Cannot castle if king would pass through a square that is under attack
