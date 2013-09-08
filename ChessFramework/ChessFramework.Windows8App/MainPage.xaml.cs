@@ -1,36 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using ChessFramework.Windows8App.Common;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace ChessFramework.Windows8App
 {
-    /// <summary>
-    /// A basic page that provides characteristics common to most applications.
-    /// </summary>
-    public sealed partial class MainPage : ChessFramework.Windows8App.Common.LayoutAwarePage
+    public sealed partial class MainPage : LayoutAwarePage
     {
-        private readonly Game _game = new Game();
+        private Game _game;
         private readonly IDictionary<string, GridView> _squares = new Dictionary<string, GridView>(64);
 
         public MainPage()
         {
-            // TODO: UI for choice
-            _game.PromotionChoice = () => PromotionChoice.Knight;
             InitializeComponent();
+            Loaded += delegate { NewGame(); };
         }
 
         /// <summary>
@@ -56,8 +41,19 @@ namespace ChessFramework.Windows8App
         {
         }
 
-        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        private void NewGameClick(object sender, RoutedEventArgs e)
         {
+            NewGame();
+            TopAppBar.IsOpen = false;
+        }
+
+        private void NewGame()
+        {
+            _game = new Game();
+
+            // TODO: UI for choice
+            _game.PromotionChoice = () => PromotionChoice.Knight;
+
             _game.Start();
             InitSquaresDictionary();
             RenderBoard(_game.Board);
@@ -65,6 +61,7 @@ namespace ChessFramework.Windows8App
 
         private void InitSquaresDictionary()
         {
+            _squares.Clear();
             _squares.Add("a8", A8);
             _squares.Add("b8", B8);
             _squares.Add("c8", C8);

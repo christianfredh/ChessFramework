@@ -17,6 +17,16 @@
         
     </Page.Resources>
 
+    <Page.TopAppBar>
+        <AppBar x:Name="TopAppBar" Padding="10,0,10,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Style="{StaticResource NewGameAppBarButtonStyle}" Content="New game" Click="NewGameClick"/>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.TopAppBar>
+
     <!--
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
@@ -37,7 +47,7 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-        <Grid Height="640" Width="640" Grid.Row="1" Loaded="FrameworkElement_OnLoaded">
+        <Grid Height="640" Width="640" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80" />
                 <RowDefinition Height="80" />

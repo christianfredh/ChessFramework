@@ -1038,6 +1038,12 @@
 
     -->
 
+    <Style x:Key="NewGameAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="NewGameAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="New Game"/>
+        <Setter Property="Content" Value="&#xE17C;"/>
+    </Style>
+
     <!--
 
     <Style x:Key="FontColorAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
