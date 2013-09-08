@@ -17,3 +17,6 @@ ChessFramework/packages/*
 
 NuGet Ouput Package
 *.nupkg
+
+# TeamCity Visual Studio extension
+_TeamCity.*
