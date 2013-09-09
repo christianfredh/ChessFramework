@@ -21,7 +21,7 @@
         <AppBar x:Name="TopAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource NewGameAppBarButtonStyle}" Content="New game" Click="NewGameClick"/>
+                    <Button Style="{StaticResource NewGameAppBarButtonStyle}" Click="NewGameClick"/>
                 </StackPanel>
             </Grid>
         </AppBar>
