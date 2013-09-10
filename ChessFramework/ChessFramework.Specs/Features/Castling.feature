@@ -141,7 +141,24 @@ Scenario: Black's kingside casteling - Cannot castle if king has moved
 	Then Black should not be able to move e8 to g8
 
 Scenario: Black's queenside casteling - Cannot castle if king has moved
-	Given TODO
+	Given a new game
+	And the game has just started
+	When White move h2 to h3
+	And Black move b8 to a6
+	And White move h3 to h4
+	And Black move e7 to e6
+	And White move h4 to h5
+	And Black move d8 to e7
+	And White move h5 to h6
+	And Black move d7 to d6
+	And White move b2 to b3
+	And Black move c8 to d7
+	And White move b3 to b4
+	And Black move e8 to d8
+	And White move g2 to g3
+	And Black move d8 to e8
+	And White move g3 to g4
+	Then Black should not be able to move e8 to c8
 
 Scenario: White's kingside casteling - Cannot castle if rock has moved
 	Given a new game
