@@ -53,7 +53,7 @@ Scenario: White's queenside casteling
 	And it should be Black's turn
 
 Scenario: Black's kingside casteling
-Given a new game
+	Given a new game
 	And the game has just started
 	When White move a2 to a3
 	And Black move g8 to h6
@@ -70,7 +70,7 @@ Given a new game
 	And it should be White's turn
 
 Scenario: Black's queenside casteling
-Given a new game
+	Given a new game
 	And the game has just started
 	When White move h2 to h3
 	And Black move b8 to a6
@@ -125,7 +125,20 @@ Scenario: White's queenside casteling - Cannot castle if king has moved
 	Then White should not be able to move e1 to c1
 	
 Scenario: Black's kingside casteling - Cannot castle if king has moved
-	Given TODO
+	Given a new game
+	And the game has just started
+	When White move a2 to a3
+	And Black move g8 to h6
+	And White move a3 to a4
+	And Black move e7 to e6
+	And White move a4 to a5
+	And Black move f8 to e7
+	And White move a5 to a6
+	And Black move e8 to f8
+	And White move b2 to b3
+	And Black move f8 to e8
+	And White move b3 to b4
+	Then Black should not be able to move e8 to g8
 
 Scenario: Black's queenside casteling - Cannot castle if king has moved
 	Given TODO
