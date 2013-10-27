@@ -20,3 +20,6 @@ NuGet Ouput Package
 
 # TeamCity Visual Studio extension
 _TeamCity.*
+
+ReShareper files
+*.DotSettings
