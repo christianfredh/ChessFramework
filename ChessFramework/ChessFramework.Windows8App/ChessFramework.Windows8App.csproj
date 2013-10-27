@@ -168,7 +168,7 @@
   <ItemGroup>
     <Reference Include="ChessFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ChessFramework.1.0-alpha\lib\portable-win+net40+sl40+wp+Xbox40\ChessFramework.dll</HintPath>
+      <HintPath>..\packages\ChessFramework.1.0-alpha2\lib\portable-net40+sl50+wp80+win\ChessFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
