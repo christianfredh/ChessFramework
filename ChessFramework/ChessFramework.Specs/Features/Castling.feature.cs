@@ -550,7 +550,41 @@ this.ScenarioSetup(scenarioInfo);
 #line 213
 this.ScenarioSetup(scenarioInfo);
 #line 214
- testRunner.Given("TODO", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a new game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 215
+ testRunner.And("the game has just started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 216
+ testRunner.When("White move h2 to h3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 217
+ testRunner.And("Black move b8 to a6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 218
+ testRunner.And("White move h3 to h4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 219
+ testRunner.And("Black move e7 to e6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 220
+ testRunner.And("White move h4 to h5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 221
+ testRunner.And("Black move d8 to e7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 222
+ testRunner.And("White move h5 to h6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 223
+ testRunner.And("Black move d7 to d6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 224
+ testRunner.And("White move b2 to b3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 225
+ testRunner.And("Black move c8 to d7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 226
+ testRunner.And("White move b3 to b4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 227
+ testRunner.And("Black move a8 to b8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 228
+ testRunner.And("White move g2 to g3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 229
+ testRunner.And("Black move b8 to a8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 230
+ testRunner.And("White move g3 to g4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 231
+ testRunner.Then("Black should not be able to move e8 to c8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -560,33 +594,33 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void WhiteSKingsideCasteling_CannotCastleIfThereArePiecesInBetween()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("White\'s kingside casteling - Cannot castle if there are pieces in between", ((string[])(null)));
-#line 216
+#line 233
 this.ScenarioSetup(scenarioInfo);
-#line 217
+#line 234
  testRunner.Given("a new game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 218
+#line 235
  testRunner.And("the game has just started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 219
+#line 236
  testRunner.When("White move g1 to h3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 220
+#line 237
  testRunner.And("Black move e7 to e6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 221
+#line 238
  testRunner.And("White move e2 to e3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 222
+#line 239
  testRunner.And("Black move e6 to e5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 223
+#line 240
  testRunner.And("White move f1 to e2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 224
+#line 241
  testRunner.And("Black move e5 to e4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 225
+#line 242
  testRunner.And("White move h1 to g1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 226
+#line 243
  testRunner.And("Black move a7 to a6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 227
+#line 244
  testRunner.And("White move g1 to h1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 228
+#line 245
  testRunner.And("Black move a6 to a5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 229
+#line 246
  testRunner.Then("White should not be able to move e1 to g1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -597,9 +631,9 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CannotCastleIfKingIsInCheck()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cannot castle if king is in check", ((string[])(null)));
-#line 231
+#line 248
 this.ScenarioSetup(scenarioInfo);
-#line 232
+#line 249
  testRunner.Given("TODO", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -610,9 +644,9 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CannotCastleIfKingWouldPassThroughASquareThatIsUnderAttack()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cannot castle if king would pass through a square that is under attack", ((string[])(null)));
-#line 233
+#line 250
 this.ScenarioSetup(scenarioInfo);
-#line 234
+#line 251
  testRunner.Given("TODO", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -623,9 +657,9 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CannotCastleIfKingWouldWouldEndUpInCheck()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cannot castle if king would would end up in check", ((string[])(null)));
-#line 235
+#line 252
 this.ScenarioSetup(scenarioInfo);
-#line 236
+#line 253
  testRunner.Given("TODO", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
@@ -636,9 +670,9 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void CannotCastleIfKingAndChosenRookIsNotOnTheSameRankSameAsSecond()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cannot castle if king and chosen rook is not on the same rank (same as second?)", ((string[])(null)));
-#line 237
+#line 254
 this.ScenarioSetup(scenarioInfo);
-#line 238
+#line 255
  testRunner.Given("TODO", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
