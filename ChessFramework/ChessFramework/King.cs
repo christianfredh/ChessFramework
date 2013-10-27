@@ -5,13 +5,14 @@ namespace ChessFramework
 {
     public class King : Piece
     {
+        private IEnumerable<Square> _possibleCastelingMoves;
         private bool _hasMoved;
 
         public override void Move(SquareIdentifier to)
         {
             var castelingMoves = GetCastelingMoves()
-                .Select(square => square.Identifier)
-                .ToList();
+                    .Select(s => s.Identifier)
+                    .ToList();
 
 
             if (castelingMoves.Contains(to))
@@ -44,6 +45,7 @@ namespace ChessFramework
             base.Move(to);
 
             _hasMoved = true;
+            _possibleCastelingMoves = null;
         }
 
         public override IEnumerable<SquareIdentifier> GetPossibleMoves()
@@ -75,23 +77,35 @@ namespace ChessFramework
 
         private IEnumerable<Square> GetCastelingMoves()
         {
+            if (_possibleCastelingMoves == null)
+            {
+                _possibleCastelingMoves = CalculateCastelingMoves().ToList();
+            }
+
+            return _possibleCastelingMoves;
+        }
+
+        private IEnumerable<Square> CalculateCastelingMoves()
+        {
             if (_hasMoved)
             {
                 yield break;
             }
 
-            var kingsideRock = CurrentSquare.SquareToTheRight.SquareToTheRight.SquareToTheRight.Piece as Rook;
+            var kingsideRook = CurrentSquare.SquareToTheRight.SquareToTheRight.SquareToTheRight.Piece as Rook;
+            var kingsideRookHasMoved = CurrentSquare.Board.History.Moves.Any(move => move.MovedPiece == kingsideRook);
+            var kingsideIsFreeBetween = IsFree(CurrentSquare.SquareToTheRight, CurrentSquare.SquareToTheRight.SquareToTheRight);
 
-            if (CurrentSquare.Board.History.Moves
-                .Any(move => move.MovedPiece == kingsideRock) == false)
+            if (kingsideRookHasMoved == false && kingsideIsFreeBetween)
             {
                 yield return CurrentSquare.SquareToTheRight.SquareToTheRight;
             }
 
-            var queensideRock = CurrentSquare.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft.Piece as Rook;
+            var queensideRook = CurrentSquare.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft.Piece as Rook;
+            var queensideRookHasMoved = CurrentSquare.Board.History.Moves.Any(move => move.MovedPiece == queensideRook);
+            var queensideIsFreeBetween = IsFree(CurrentSquare.SquareToTheLeft, CurrentSquare.SquareToTheLeft.SquareToTheLeft, CurrentSquare.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft);
 
-            if (CurrentSquare.Board.History.Moves
-                .Any(move => move.MovedPiece == queensideRock) == false)
+            if (queensideRookHasMoved == false && queensideIsFreeBetween)
             {
                 yield return CurrentSquare.SquareToTheLeft.SquareToTheLeft;
             }
@@ -99,7 +113,12 @@ namespace ChessFramework
 
             // TODO: Implement restrictions
 
-            
+
+        }
+
+        private bool IsFree(params Square[] squares)
+        {
+            return squares.All(square => square.IsFree());
         }
     }
 }
