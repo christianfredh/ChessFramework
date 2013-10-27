@@ -57,6 +57,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Castling.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\EnPassant.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnPassant.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\MovingAQueen.feature.cs">
       <DependentUpon>MovingAQueen.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -119,6 +124,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Castling.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\EnPassant.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EnPassant.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\MovingAQueen.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MovingAQueen.feature.cs</LastGenOutput>
@@ -166,6 +175,9 @@
       <Project>{0d13ca49-a9ff-488c-9a95-2104a864a477}</Project>
       <Name>ChessFramework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

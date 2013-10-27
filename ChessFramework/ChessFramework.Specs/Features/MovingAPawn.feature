@@ -28,17 +28,3 @@ Scenario: Simple capture
 	Then there should be a white pawn at e5
 	And a black pawn should be captured
 	And it should be Black's turn
-
-Scenario: En passant
-	Given a new game
-	And the game has just started
-	When White move e2 to e4
-	And Black move a7 to a6
-	And White move e4 to e5
-	And Black move d7 to d5
-	And White move e5 to d6
-	Then there should be a white pawn at d6
-	And d5 should be empty
-	And a total of 5 moves should be registered
-	And a black pawn should be captured
-	And it should be Black's turn
