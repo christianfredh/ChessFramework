@@ -88,7 +88,14 @@ namespace ChessFramework
                 yield return CurrentSquare.SquareToTheRight.SquareToTheRight;
             }
 
-            yield return CurrentSquare.SquareToTheLeft.SquareToTheLeft;
+            var queensideRock = CurrentSquare.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft.Piece as Rook;
+
+            if (CurrentSquare.Board.History.Moves
+                .Any(move => move.MovedPiece == queensideRock) == false)
+            {
+                yield return CurrentSquare.SquareToTheLeft.SquareToTheLeft;
+            }
+
 
             // TODO: Implement restrictions
 
