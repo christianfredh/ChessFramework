@@ -42,10 +42,15 @@ namespace ChessFramework
                 rook.CurrentSquare = CurrentSquare.Board[newSquareIdentifier];
             }
 
-            base.Move(to);
-
-            _hasMoved = true;
-            _possibleCastelingMoves = null;
+            try
+            {
+                base.Move(to);
+            }
+            finally
+            {
+                _hasMoved = true;
+                _possibleCastelingMoves = null;
+            }
         }
 
         public override IEnumerable<SquareIdentifier> GetPossibleMoves()
