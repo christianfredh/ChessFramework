@@ -101,8 +101,9 @@ namespace ChessFramework
             var kingsideRook = CurrentSquare.SquareToTheRight.SquareToTheRight.SquareToTheRight.Piece as Rook;
             var kingsideRookHasMoved = CurrentSquare.Board.History.Moves.Any(move => move.MovedPiece == kingsideRook);
             var kingsideIsFreeBetween = IsFree(CurrentSquare.SquareToTheRight, CurrentSquare.SquareToTheRight.SquareToTheRight);
+            var kingsideWouldEndUpInCheck = CurrentSquare.SquareToTheRight.SquareToTheRight.IsThreatenedBy(Color.GetOpponent());
 
-            if (kingsideRookHasMoved == false && kingsideIsFreeBetween)
+            if (kingsideRookHasMoved == false && kingsideIsFreeBetween && kingsideWouldEndUpInCheck == false)
             {
                 yield return CurrentSquare.SquareToTheRight.SquareToTheRight;
             }
@@ -110,8 +111,9 @@ namespace ChessFramework
             var queensideRook = CurrentSquare.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft.Piece as Rook;
             var queensideRookHasMoved = CurrentSquare.Board.History.Moves.Any(move => move.MovedPiece == queensideRook);
             var queensideIsFreeBetween = IsFree(CurrentSquare.SquareToTheLeft, CurrentSquare.SquareToTheLeft.SquareToTheLeft, CurrentSquare.SquareToTheLeft.SquareToTheLeft.SquareToTheLeft);
+            var queensideWouldEndUpInCheck = CurrentSquare.SquareToTheLeft.SquareToTheLeft.IsThreatenedBy(Color.GetOpponent());
 
-            if (queensideRookHasMoved == false && queensideIsFreeBetween)
+            if (queensideRookHasMoved == false && queensideIsFreeBetween && queensideWouldEndUpInCheck == false)
             {
                 yield return CurrentSquare.SquareToTheLeft.SquareToTheLeft;
             }

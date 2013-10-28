@@ -252,7 +252,19 @@ Scenario: Cannot castle if king is in check
 
 Scenario: Cannot castle if king would pass through a square that is under attack
 	Given TODO
+
 Scenario: Cannot castle if king would would end up in check
-	Given TODO
+	Given a new game
+	And the game has just started
+	When White move g1 to h3
+	And Black move c7 to c6
+	When White move e2 to e4
+	And Black move d8 to b6
+	When White move f1 to e2
+	And Black move a7 to a6
+	When White move f2 to f3
+	And Black move a6 to a5
+	Then White should not be able to move e1 to g1
+
 Scenario: Cannot castle if king and chosen rook is not on the same rank (same as second?)
 	Given TODO
