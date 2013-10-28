@@ -45,10 +45,10 @@ namespace ChessFramework
             try
             {
                 base.Move(to);
+                _hasMoved = true;
             }
             finally
             {
-                _hasMoved = true;
                 _possibleCastelingMoves = null;
             }
         }

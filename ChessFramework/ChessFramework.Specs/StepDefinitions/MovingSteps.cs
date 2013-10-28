@@ -2,6 +2,7 @@
 using ChessFramework.Specs.Context;
 using FluentAssertions;
 using TechTalk.SpecFlow;
+using System;
 
 namespace ChessFramework.Specs.StepDefinitions
 {
@@ -18,7 +19,22 @@ namespace ChessFramework.Specs.StepDefinitions
                 .Be(color);
 
             ChessScenario.Game.Move(new SquareIdentifier(from), new SquareIdentifier(to));
+        } 
+        
+        [When(@"(.*) is illegally moving (.*) to (.*)")]
+        public void WhenTryingToDoAnIllegalMove(string textColor, string from, string to)
+        {
+            var color = BoardHelper.ToArmyColor(textColor);
+
+            ChessScenario.Game.CurrentTurn
+                .Should()
+                .Be(color);
+
+            Action move = () => ChessScenario.Game.Move(new SquareIdentifier(from), new SquareIdentifier(to));
+
+            move.ShouldThrow<IllegalMoveException>();
         }
+
         [When(@"(.*) promotes to (.*) when moving (.*) to (.*)")]
         public void WhenMoving(string textColor, string promoteTo, string from, string to)
         {
@@ -64,6 +80,22 @@ namespace ChessFramework.Specs.StepDefinitions
                          .Should()
                          .HaveCount(1);
         }
+
+        [Then(@"(.*) should be able to move (.*) to (.*)")]
+        public void ThenShouldBeAbleToMoveTo(string textColor, string textFrom, string textTo)
+        {
+            var color = BoardHelper.ToArmyColor(textColor);
+            ChessScenario.Game.CurrentTurn.Should().Be(color);
+
+            var from = new SquareIdentifier(textFrom);
+            var to = new SquareIdentifier(textTo);
+            var piece = ChessScenario.Board[from].Piece;
+
+            piece.GetPossibleMoves()
+                .Should()
+                .Contain(to);
+        }
+
 
         [Then(@"(.*) should be able to move (.*) to")]
         public void ThenShouldBeAbleToMoveTo(string textColor, string textFrom, Table toOptions)

@@ -242,11 +242,11 @@ Scenario: Cannot castle if king is in check
 	And the game has just started
 	When White move g1 to h3
 	And Black move e7 to e6
-	When White move f2 to f3
+	And White move f2 to f3
 	And Black move d7 to d6
-	When White move e2 to e3
+	And White move e2 to e3
 	And Black move c7 to c6
-	When White move f1 to e2
+	And White move f1 to e2
 	And Black move d8 to h4
 	Then White should not be able to move e1 to g1
 
@@ -258,13 +258,30 @@ Scenario: Cannot castle if king would would end up in check
 	And the game has just started
 	When White move g1 to h3
 	And Black move c7 to c6
+	And White move e2 to e4
+	And Black move d8 to b6
+	And White move f1 to e2
+	And Black move a7 to a6
+	And White move f2 to f3
+	And Black move a6 to a5
+	Then White should not be able to move e1 to g1
+
+Scenario: Cannot castle if king and chosen rook is not on the same rank (same as second?)
+	Given TODO
+
+	
+Scenario: Should be able to castle after a failed try when possible 
+	Given a new game
+	And the game has just started
+	When White move g1 to h3
+	And Black move c7 to c6
 	When White move e2 to e4
 	And Black move d8 to b6
 	When White move f1 to e2
 	And Black move a7 to a6
 	When White move f2 to f3
 	And Black move a6 to a5
-	Then White should not be able to move e1 to g1
-
-Scenario: Cannot castle if king and chosen rook is not on the same rank (same as second?)
-	Given TODO
+	And White is illegally moving e1 to g1
+	And White move d2 to d4
+	And Black move a5 to a4
+	Then White should be able to move e1 to g1
