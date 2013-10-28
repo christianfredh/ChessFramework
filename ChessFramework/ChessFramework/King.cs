@@ -92,6 +92,12 @@ namespace ChessFramework
                 yield break;
             }
 
+            if (IsInCheck())
+            {
+                yield break;
+            }
+
+
             var kingsideRook = CurrentSquare.SquareToTheRight.SquareToTheRight.SquareToTheRight.Piece as Rook;
             var kingsideRookHasMoved = CurrentSquare.Board.History.Moves.Any(move => move.MovedPiece == kingsideRook);
             var kingsideIsFreeBetween = IsFree(CurrentSquare.SquareToTheRight, CurrentSquare.SquareToTheRight.SquareToTheRight);
@@ -114,6 +120,11 @@ namespace ChessFramework
             // TODO: Implement restrictions
 
 
+        }
+
+        private bool IsInCheck()
+        {
+            return CurrentSquare.IsThreatenedBy(Color.GetOpponent());
         }
 
         private bool IsFree(params Square[] squares)

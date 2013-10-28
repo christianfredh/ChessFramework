@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 
 namespace ChessFramework
 {
@@ -111,6 +112,13 @@ namespace ChessFramework
         public bool IsOccupied()
         {
             return IsFree() == false;
+        }
+
+        public bool IsThreatenedBy(Army army)
+        {
+            return Board
+                .GetThretenedSquares(army)
+                .Contains(this);
         }
     }
 }
